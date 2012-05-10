@@ -1,4 +1,6 @@
 VegastechApp::Application.routes.draw do
+  resources :votes
+
   resources :stories
 
   # The priority is based upon order of creation:
