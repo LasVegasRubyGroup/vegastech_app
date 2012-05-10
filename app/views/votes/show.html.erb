@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Twitter handle:</b>
+  <%= @vote.twitter_handle %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @vote.value %>
+</p>
+
+<p>
+  <b>Story:</b>
+  <%= @vote.story_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_vote_path(@vote) %> |
+<%= link_to 'Back', votes_path %>

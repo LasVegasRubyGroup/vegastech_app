@@ -1,0 +1,27 @@
+<h1>Listing votes</h1>
+
+<table>
+  <tr>
+    <th>Twitter handle</th>
+    <th>Value</th>
+    <th>Story</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @votes.each do |vote| %>
+  <tr>
+    <td><%= vote.twitter_handle %></td>
+    <td><%= vote.value %></td>
+    <td><%= vote.story_id %></td>
+    <td><%= link_to 'Show', vote %></td>
+    <td><%= link_to 'Edit', edit_vote_path(vote) %></td>
+    <td><%= link_to 'Destroy', vote, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Vote', new_vote_path %>

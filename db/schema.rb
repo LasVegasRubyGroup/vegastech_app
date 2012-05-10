@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120426025626) do
+ActiveRecord::Schema.define(:version => 20120510032030) do
 
   create_table "stories", :force => true do |t|
     t.text     "content"
@@ -24,5 +24,17 @@ ActiveRecord::Schema.define(:version => 20120426025626) do
   add_index "stories", ["created_at"], :name => "index_stories_on_created_at"
   add_index "stories", ["story_id"], :name => "index_stories_on_story_id"
   add_index "stories", ["twitter_handle"], :name => "index_stories_on_twitter_handle"
+
+  create_table "votes", :force => true do |t|
+    t.string   "twitter_handle"
+    t.integer  "value"
+    t.integer  "story_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "votes", ["story_id"], :name => "index_votes_on_story_id"
+  add_index "votes", ["twitter_handle", "story_id"], :name => "index_votes_on_twitter_handle_and_story_id", :unique => true
+  add_index "votes", ["twitter_handle"], :name => "index_votes_on_twitter_handle"
 
 end
