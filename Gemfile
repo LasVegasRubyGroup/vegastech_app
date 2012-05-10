@@ -39,12 +39,22 @@ gem 'jquery-rails'
 
 group :development do
 	gem "rspec-rails"
+  gem "guard-rspec"
+  gem "guard-spork"
+
+# mac
+  gem "rb-fsevent" if RUBY_PLATFORM.downcase.include?("darwin")
+  gem "growl" if RUBY_PLATFORM.downcase.include?("darwin")
+
+# linux
+  gem 'rb-inotify' if RUBY_PLATFORM.downcase.include?("linux")
+  gem 'libnotify' if RUBY_PLATFORM.downcase.include?("linux")
+
 end
 
 group :test do
 	gem "rspec-rails"
+  gem "factory_girl_rails"
+  gem "database_cleaner"
+  gem "capybara"
 end
-
-
-
-
