@@ -4,7 +4,9 @@ class Story < ActiveRecord::Base
   validates_presence_of :content
   validates_format_of :twitter_handle, with: /\A@\w+\Z/
   has_many :votes
-
+  has_many :flags
+  has_many :comments
+	
 
 
   def rank 
