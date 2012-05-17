@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+99.times do |x|
+	
+	Story.create(content: "#{x} monkeys", twitter_handle: "@user#{x}")
+		
+end
+

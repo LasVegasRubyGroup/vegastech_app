@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120517012250) do
+ActiveRecord::Schema.define(:version => 20120517032027) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "story_id"
+    t.text     "content"
+    t.string   "twitter_handle"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "flags", :force => true do |t|
     t.string   "twitter_handle", :null => false
