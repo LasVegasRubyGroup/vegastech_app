@@ -1,5 +1,4 @@
-class Comment < ActiveRecord::Base
-  attr_accessible :content, :story_id, :twitter_handle
+class Comment < Post
   belongs_to :story
-  
+
 end

@@ -1,4 +1,6 @@
 VegastechApp::Application.routes.draw do
+  resources :posts
+
   resources :votes
 
   resources :stories
