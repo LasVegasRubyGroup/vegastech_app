@@ -1,5 +1,11 @@
 <%- model_class = Story.new.class -%>
 <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+
+  <% if current_user %>
+    <h2>
+      <%= current_user.twitter_handle %>
+    </h2>
+  <% end %>
 <table class="table table-striped">
   <thead>
     <tr>

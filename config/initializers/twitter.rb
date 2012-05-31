@@ -1,5 +1,3 @@
-client = TwitterOAuth::Client.new(
-    :consumer_key => 'jcEARkI2G775y8qyVUiJaA',
-    :consumer_secret => ENV["CONSUMER_SECRET"]
-)
-
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :twitter, "jcEARkI2G775y8qyVUiJaA", ENV["CONSUMER_SECRET"]
+end

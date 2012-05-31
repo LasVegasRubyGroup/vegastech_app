@@ -1,9 +1,15 @@
 VegastechApp::Application.routes.draw do
+  get "sessions/create"
+
   resources :posts
 
   resources :votes
 
   resources :stories
+
+  resources :sessions, only: [:create, :destroy]
+
+  match '/auth/:provider/callback', to: 'sessions#create'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
