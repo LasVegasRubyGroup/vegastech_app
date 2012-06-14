@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :content, :twitter_handle
+  attr_accessible :content, :twitter_handle, :tweeted_at
   validates_presence_of :twitter_handle
   validates_presence_of :content
   validates_format_of :twitter_handle, with: /\A@\w+\Z/

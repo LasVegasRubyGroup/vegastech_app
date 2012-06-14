@@ -14,6 +14,13 @@ describe Story do
   		story.should be_invalid
   	end
 
+    it "should not be valid with a duplicate twitter_id" do
+        story.twitter_id = "fake_id"
+        story.save
+        story2 = Story.new(:twitter_id => "fake_id", :twitter_handle => '@SomeHandle', :content => "My tweet.")
+        story2.should be_invalid
+    end 
+
   	it "should not be valid without content" do
   		story.content = nil
   		story.should be_invalid
