@@ -13,7 +13,7 @@
       <th><%= model_class.human_attribute_name(:content) %></th>
       <th><%= model_class.human_attribute_name(:twitter_handle) %></th>
       <th><%= model_class.human_attribute_name(:story_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:tweeted_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -24,7 +24,7 @@
         <td><%= story.content %></td>
         <td><%= story.twitter_handle %></td>
         <td><%= story.story_id %></td>
-        <td><%=l story.created_at %></td>
+        <td><%= time_ago_in_words(story.tweeted_at) %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_story_path(story), :class => 'btn btn-mini' %>
