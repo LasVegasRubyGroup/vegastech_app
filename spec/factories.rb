@@ -12,4 +12,9 @@ FactoryGirl.define do
       value -1
     end
   end
+
+  factory :user do |u|
+    u.sequence(:twitter_handle) {|n| "@user#{n}"}
+    u.sequence(:uid) {|n| "#{n}"}
+  end
 end

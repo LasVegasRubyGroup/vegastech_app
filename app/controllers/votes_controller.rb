@@ -40,15 +40,17 @@ class VotesController < ApplicationController
   # POST /votes
   # POST /votes.json
   def create
-    @vote = Vote.new(params[:vote])
+    @story = Story.find(params[:story_id])
 
     respond_to do |format|
-      if @vote.save
-        format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
-        format.json { render json: @vote, status: :created, location: @vote }
+      if current_user.up_vote(@story)
+        format.html { redirect_to stories_path, notice: 'Vote was successfully created.' }
+        format.js
       else
-        format.html { render action: "new" }
-        format.json { render json: @vote.errors, status: :unprocessable_entity }
+        @error = 'Your vote was invalid'
+        flash[:error] = @error
+        format.html { redirect_to stories_path }
+        format.js
       end
     end
   end

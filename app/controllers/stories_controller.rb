@@ -2,7 +2,7 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index
-    @stories = Story.order("tweeted_at desc")
+    @stories = Story.ranked
 
     respond_to do |format|
       format.html # index.html.erb

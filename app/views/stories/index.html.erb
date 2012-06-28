@@ -9,7 +9,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th> Votes </th>
       <th><%= model_class.human_attribute_name(:content) %></th>
       <th><%= model_class.human_attribute_name(:twitter_handle) %></th>
       <th><%= model_class.human_attribute_name(:story_id) %></th>
@@ -19,20 +19,30 @@
   </thead>
   <tbody>
     <% @stories.each do |story| %>
-      <tr>
-        <td><%= link_to story.id, story_path(story) %></td>
-        <td><%= story.content %></td>
+      <tr data-id="<%= story.id %>">
+        <td><%= story.rank %></td>
+        <td><%= link_to story.content, story_path(story) %></td>
         <td><%= story.twitter_handle %></td>
         <td><%= story.story_id %></td>
         <td><%= time_ago_in_words(story.tweeted_at) %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_story_path(story), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      story_path(story),
-                      :method => :delete,
-                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-                      :class => 'btn btn-mini btn-danger' %>
+          <% if current_user && !current_user.voted_on?(story) %>
+            <%= link_to "<i class='icon-thumbs-up'></i> Up Vote".html_safe, story_votes_path(story), method: 'post', remote: true, class: 'btn btn-success btn-mini up_vote' %>
+          <% elsif current_user %>
+            <span class="label label-success">Voted</span>
+          <% else %>
+
+          <% end %>
+
+          <% if current_user && current_user.admin? %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_story_path(story), :class => 'btn btn-mini' %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        story_path(story),
+                        :method => :delete,
+                        :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                        :class => 'btn btn-mini btn-danger' %>
+          <% end %>
         </td>
       </tr>
     <% end %>

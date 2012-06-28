@@ -1,11 +1,13 @@
 VegastechApp::Application.routes.draw do
   get "sessions/create"
 
-  resources :posts
+  resources :posts do 
+    resources :votes
+  end
 
-  resources :votes
-
-  resources :stories
+  resources :stories do
+    resources :votes
+  end
 
   resources :sessions, only: [:create, :destroy]
 
