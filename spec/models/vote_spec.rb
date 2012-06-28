@@ -4,7 +4,7 @@ require 'spec_helper'
 describe Vote do
   context "when validating a vote" do
     let(:story) { Story.create(twitter_handle: "@fredguest", content: "once upon a time") }
-    let(:vote) { story.votes.build(twitter_handle: "@fredguest", value: 1) }
+    let(:vote) { story.votes.build(twitter_handle: "@bobfirestone", value: 1) }
     it "should be valid with required values" do
       vote.should be_valid
     end

@@ -3,6 +3,8 @@ class Story < Post
   attr_accessible :twitter_id
   validates :twitter_id, :uniqueness => true
 
+  after_save :self_love
+
   def self.ranked
     Story.all.sort do |a,b| 
       r = b.rank <=> a.rank
@@ -11,6 +13,14 @@ class Story < Post
       else
         r
       end
+    end
+  end
+
+  private
+
+  def self_love
+    if id_changed?
+      votes.create(twitter_handle: twitter_handle, value: 1)
     end
   end
 

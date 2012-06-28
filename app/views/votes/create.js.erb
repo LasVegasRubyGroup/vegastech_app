@@ -2,4 +2,5 @@
   <%# TODO %>
 <% else %>
  $('tr[data-id="<%=@story.id%>"] .up_vote').replaceWith('<span class="label label-success">Voted</span>') 
+ $('tr[data-id="<%=@story.id%>"] .rank').text('<%= @story.rank %>')
 <% end %>

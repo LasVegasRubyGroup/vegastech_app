@@ -22,4 +22,6 @@ class SessionsController < ApplicationController
   def twitter_handle
     "@" + auth_hash['info']['nickname']
   end
+
+  
 end

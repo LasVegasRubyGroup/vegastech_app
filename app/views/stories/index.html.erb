@@ -20,7 +20,7 @@
   <tbody>
     <% @stories.each do |story| %>
       <tr data-id="<%= story.id %>">
-        <td><%= story.rank %></td>
+        <td class='rank'><%= story.rank %></td>
         <td><%= link_to story.content, story_path(story) %></td>
         <td><%= story.twitter_handle %></td>
         <td><%= story.story_id %></td>

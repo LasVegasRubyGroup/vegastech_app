@@ -49,31 +49,41 @@ describe Story do
       story.should respond_to(:rank)
     end
 
-    it "should have a rank that is 0 with one up vote and one down vote" do
+    it "should have a rank that is 1 with one new up vote and one new down vote" do
       story.save
       vote1 = story.votes.create(twitter_handle: "@fredguest", value: 1)
       vote2 = story.votes.create(twitter_handle: "@dylansimpson", value: -1)
-      story.rank.should == 0
-    end
-
-    it "should have a rank that is 1 with one up vote" do
-      story.save
-      vote1 = story.votes.create(twitter_handle: "@fredguest", value: 1)
       story.rank.should == 1
     end
 
-    it "should have a rank that is -1 with one down vote" do
+    it "should have a rank that is 2 with one up vote" do
+      story.save
+      vote1 = story.votes.create(twitter_handle: "@fredguest", value: 1)
+      story.rank.should == 2
+    end
+
+    it "should have a rank that is 0 with one down vote" do
       story.save
       vote1 = story.votes.create(twitter_handle: "@fredguest", value: -1)
-      story.rank.should == -1
+      story.rank.should == 0
     end
 
     it "it should have a rank of the sum of the value of it votes" do
       story.save
       FactoryGirl.create(:vote, post: story)
     end
-
   end
+
+  context "when creating a story" do
+    let(:story) { Story.new(twitter_handle: "@fredguest", content: "once upon a time") }
+
+    it "should create a vote for the author on their own story" do
+      story.save
+      story.votes.count.should == 1
+      story.votes.first.twitter_handle.should == story.twitter_handle
+    end
+  end
+
 end
 
 
