@@ -72,6 +72,16 @@ describe Story do
       story.save
       FactoryGirl.create(:vote, post: story)
     end
+
+    it "should retweet a story with 10 votes" do
+      story.save
+      story.should_receive(:retweet)
+      10.times do |i|
+        vote = story.votes.build(twitter_handle: "@usr#{i}", value: 1)
+        vote.stub(:post).and_return(story)
+        vote.save
+      end
+    end
   end
 
   context "when creating a story" do
@@ -84,6 +94,13 @@ describe Story do
     end
   end
 
+  describe '#retweet' do
+    it "should call retweet on twitter library" do
+      story = Story.new
+      Logger.should_receive(:debug)
+      story.retweet
+    end
+  end 
 end
 
 
