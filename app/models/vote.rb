@@ -7,6 +7,7 @@ class Vote < ActiveRecord::Base
   validates_inclusion_of :value, in: [-1,1]
   belongs_to :post
   validates_uniqueness_of :twitter_handle, scope: :post_id
+  after_save :retweet_as_necessary
 
   def story
     post
@@ -22,6 +23,12 @@ class Vote < ActiveRecord::Base
 
   def comment=(val)
     post = val
+  end
+
+  def retweet_as_necessary
+    if post.rank == 10
+      post.retweet
+    end
   end
 
 end

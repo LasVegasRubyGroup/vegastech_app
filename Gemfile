@@ -44,6 +44,9 @@ group :development do
   gem "guard-rspec"
   gem "guard-spork"
 
+  # Nick installed this to get growl notifications to work with Guard
+  gem 'ruby_gntp'
+
 # mac
   gem "rb-fsevent" if RUBY_PLATFORM.downcase.include?("darwin")
   gem "growl" if RUBY_PLATFORM.downcase.include?("darwin")

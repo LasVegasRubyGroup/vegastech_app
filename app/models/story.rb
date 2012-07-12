@@ -16,6 +16,11 @@ class Story < Post
     end
   end
 
+  def retweet
+    # We actually need to get this to work
+    Logger.debug("Twitter.retweet")
+  end
+
   private
 
   def self_love
@@ -23,5 +28,6 @@ class Story < Post
       votes.create(twitter_handle: twitter_handle, value: 1)
     end
   end
+
 
 end
