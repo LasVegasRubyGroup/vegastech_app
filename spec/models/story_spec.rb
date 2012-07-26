@@ -45,30 +45,30 @@ describe Story do
       story.should respond_to(:votes)
     end
 
-    it "should have a rank" do
-      story.should respond_to(:rank)
+    it "should have a vote_count" do
+      story.should respond_to(:vote_count)
     end
 
-    it "should have a rank that is 1 with one new up vote and one new down vote" do
+    it "should have a vote_count that is 1 with one new up vote and one new down vote" do
       story.save
       vote1 = story.votes.create(twitter_handle: "@fredguest", value: 1)
       vote2 = story.votes.create(twitter_handle: "@dylansimpson", value: -1)
-      story.rank.should == 1
+      story.vote_count.should == 1
     end
 
-    it "should have a rank that is 2 with one up vote" do
+    it "should have a vote_count that is 2 with one up vote" do
       story.save
       vote1 = story.votes.create(twitter_handle: "@fredguest", value: 1)
-      story.rank.should == 2
+      story.vote_count.should == 2
     end
 
-    it "should have a rank that is 0 with one down vote" do
+    it "should have a vote_count that is 0 with one down vote" do
       story.save
       vote1 = story.votes.create(twitter_handle: "@fredguest", value: -1)
-      story.rank.should == 0
+      story.vote_count.should == 0
     end
 
-    it "it should have a rank of the sum of the value of it votes" do
+    it "it should have a vote_count of the sum of the value of it votes" do
       story.save
       FactoryGirl.create(:vote, post: story)
     end
@@ -84,6 +84,14 @@ describe Story do
     end
   end
 
+  describe "#age" do
+    context "for a tweet 1 day old" do
+      let(:story) { Story.new(twitter_handle: "@fredguest", content: "once upon a time", tweeted_at: 1.day.ago) }
+      it "should be 2" do
+        story.age.should be_within(0.01).of(2)
+      end
+    end
+  end
 end
 
 

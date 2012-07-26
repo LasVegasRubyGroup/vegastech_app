@@ -14,17 +14,19 @@
       <th><%= model_class.human_attribute_name(:twitter_handle) %></th>
       <th><%= model_class.human_attribute_name(:story_id) %></th>
       <th><%= model_class.human_attribute_name(:tweeted_at) %></th>
+      <th><%= model_class.human_attribute_name(:rank) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @stories.each do |story| %>
       <tr data-id="<%= story.id %>">
-        <td class='rank'><%= story.rank %></td>
+        <td class='rank'><%= story.vote_count %></td>
         <td><%= link_to story.content, story_path(story) %></td>
         <td><%= story.twitter_handle %></td>
         <td><%= story.story_id %></td>
         <td><%= time_ago_in_words(story.tweeted_at) %></td>
+        <td><%= story.rank %></td>
         <td>
           <% if current_user && !current_user.voted_on?(story) %>
             <%= link_to "<i class='icon-thumbs-up'></i> Up Vote".html_safe, story_votes_path(story), method: 'post', remote: true, class: 'btn btn-success btn-mini up_vote' %>

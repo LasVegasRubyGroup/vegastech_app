@@ -7,6 +7,15 @@ class Post < ActiveRecord::Base
   has_many :flags
 
   def rank
+    vote_count / age
+  end
+
+  def age
+    (Time.now - tweeted_at) / 1.days + 1
+  end
+
+  #just in case we need to do a counter cachee
+  def vote_count
     votes.inject(0) { |sum,v| sum += v.value }
   end
 
