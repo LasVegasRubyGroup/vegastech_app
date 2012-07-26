@@ -85,7 +85,7 @@ describe Story do
   end
 
   describe "#age" do
-    context "for a tweet 1 day old" do
+    context "for a ratweet 1 day old" do
       let(:story) { Story.new(twitter_handle: "@fredguest", content: "once upon a time", tweeted_at: 1.day.ago) }
       it "should be 2" do
         story.age.should be_within(0.01).of(2)
