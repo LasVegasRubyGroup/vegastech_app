@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'omniauth-twitter'
 gem 'twitter'
 gem 'twitter-text'
+gem 'foreman'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -65,4 +66,5 @@ end
 
 group :production do
   gem "mysql2"
+  gem "unicorn"
 end

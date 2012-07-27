@@ -1,3 +1,4 @@
 #!/bin/sh
-touch tmp/restart.txt
-echo "restarting Passenger app"
+sudo /usr/sbin/service lvrug stop
+sudo /usr/sbin/service lvrug start
+echo "restarting app"

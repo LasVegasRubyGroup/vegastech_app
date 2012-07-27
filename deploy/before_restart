@@ -49,6 +49,8 @@ if File.file? 'Rakefile'
   run "#{rake_cmd} #{tasks.join(' ')} RAILS_ENV=#{RAILS_ENV}" if tasks.any?
 end
 
+run 'bundle exec rake assets:precompile'
+
 # clear cached assets (unversioned/ignored files)
 run "git clean -x -f -- public/stylesheets public/javascripts"
 
