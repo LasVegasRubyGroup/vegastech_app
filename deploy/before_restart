@@ -12,7 +12,7 @@ RAILS_ENV   = ENV['RAILS_ENV'] || 'production'
 use_bundler = File.file? 'Gemfile'
 rake_cmd    = use_bundler ? 'bundle exec rake' : 'rake'
 
-`rm config/database.yml`
+run 'rm config/database.yml 2>&1'
 database_config = ERB.new <<-EOF
 production:
   adapter: mysql2
