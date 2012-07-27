@@ -53,6 +53,7 @@ group :development do
   gem 'rb-inotify' if RUBY_PLATFORM.downcase.include?("linux")
   gem 'libnotify' if RUBY_PLATFORM.downcase.include?("linux")
 
+  gem 'git-deploy'
 end
 
 group :test do
