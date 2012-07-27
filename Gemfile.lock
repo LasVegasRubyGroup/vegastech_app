@@ -90,6 +90,7 @@ GEM
     less-rails (2.2.3)
       actionpack (>= 3.1)
       less (~> 2.2.0)
+    libnotify (0.7.3)
     libv8 (3.3.10.4)
     libwebsocket (0.1.5)
       addressable
@@ -225,10 +226,12 @@ DEPENDENCIES
   guard-rspec
   guard-spork
   jquery-rails
+  libnotify
   mysql2
   omniauth-twitter
   rails (= 3.2.3)
   rb-fsevent
+  rb-inotify
   rspec-rails
   sass-rails (~> 3.2.3)
   sqlite3
