@@ -28,6 +28,7 @@ File.open('config/database.yml', 'w') { |f| f.write(database_config.result(bindi
 
 if use_bundler
   bundler_args = ['--deployment']
+  bundler_args = ['--with assets']
   BUNDLE_WITHOUT = ENV['BUNDLE_WITHOUT'] || 'development:test'
   bundler_args << '--without' << BUNDLE_WITHOUT unless BUNDLE_WITHOUT.empty?
 
