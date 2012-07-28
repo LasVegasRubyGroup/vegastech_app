@@ -237,7 +237,7 @@ DEPENDENCIES
   sqlite3
   therubyracer
   twitter
-  twitter-bootstrap-rails (= 2.0.7)
+  twitter-bootstrap-rails
   twitter-text
   uglifier (>= 1.0.3)
   unicorn

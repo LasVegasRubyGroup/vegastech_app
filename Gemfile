@@ -10,6 +10,8 @@ gem 'omniauth-twitter'
 gem 'twitter'
 gem 'twitter-text'
 gem 'foreman'
+gem 'twitter-bootstrap-rails'
+gem 'therubyracer', :platform => :ruby
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -18,9 +20,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'twitter-bootstrap-rails', '2.0.7'
-  gem 'therubyracer', :platform => :ruby
-
   gem 'uglifier', '>= 1.0.3'
 end
 
