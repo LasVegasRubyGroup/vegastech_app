@@ -11,7 +11,7 @@ gem 'twitter'
 gem 'twitter-text'
 gem 'tweetstream', '~> 1.0'
 gem 'foreman'
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', '2.0.7'
 gem 'therubyracer', :platform => :ruby
 
 # Gems used only for assets and not required
