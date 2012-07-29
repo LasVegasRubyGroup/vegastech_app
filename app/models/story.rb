@@ -17,13 +17,19 @@ class Story < Post
   end
 
   def self.create_from_tweet(tweet)
-    username = tweet.respond_to?(:from_user) ? tweet.from_user : tweet.user.screen_name
-
     self.create!(
       twitter_id: tweet.id.to_s,
-      twitter_handle: "@#{username}",
+      twitter_handle: "@#{tweet.user.screen_name}",
       content: tweet.text,
       tweeted_at: tweet.created_at)
+  end
+
+  def self.find_or_create_by_tweet(tweet)
+    if story = self.find_by_twitter_id(tweet.id)
+      story
+    else
+      self.create_from_tweet(tweet)
+    end
   end
 
   private

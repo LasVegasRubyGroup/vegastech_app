@@ -2,6 +2,17 @@
 
 require File.dirname(__FILE__) + '/../config/environment'
 
+def save_tweet(tweet)
+  if retweet_of = tweet[:retweeted_status]
+    story = Story.find_or_create_by_tweet(retweet_of)
+    story.votes.create(twitter_handle: "@#{tweet.user.screen_name}", value: 1)
+    print 'r'
+  else
+    Story.create_from_tweet(tweet)
+    print '.'
+  end
+end
+
 TweetStream.configure do |config|
   config.consumer_key       = ENV['TWITTER_CONSUMER_KEY']
   config.consumer_secret    = ENV['TWITTER_CONSUMER_SECRET']
@@ -10,11 +21,8 @@ TweetStream.configure do |config|
   config.auth_method        = :oauth
 end
 
-TweetStream::Client.new.track(ENV['TRACK_HASHTAG']) do |tweet|
-  begin
-    Story.create_from_tweet(tweet)
-    print '.'
-  rescue ActiveRecord::RecordInvalid
-    puts "Problem with tweet #{tweet.id}"
-  end
+TweetStream::Client.new.on_error do |message|
+  puts "Error from stream #{message}"
+end.track(ENV['TRACK_HASHTAG']) do |tweet|
+  save_tweet(tweet)
 end
