@@ -53,7 +53,7 @@ group :development do
 	gem "rspec-rails"
   gem "guard-rspec"
   gem "guard-spork"
-
+  gem "sqlite3"
   # mac
   gem "rb-fsevent", require: darwin_only('rb-fsevent')
   gem "growl", require: darwin_only('growl')
@@ -61,7 +61,6 @@ group :development do
   # linux
   gem 'rb-inotify', require: linux_only('rb-inotify')
   gem 'libnotify', require: linux_only('libnotify')
-
   gem 'git-deploy'
 end
 

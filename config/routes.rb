@@ -7,6 +7,7 @@ VegastechApp::Application.routes.draw do
 
   resources :stories do
     resources :votes
+    resources :comments
   end
 
   resources :sessions, only: [:create, :destroy]

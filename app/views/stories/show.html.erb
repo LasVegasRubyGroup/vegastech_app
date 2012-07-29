@@ -8,6 +8,14 @@
   <dd><%= @story.twitter_handle %></dd>
 </dl>
 
+<%#= render '/comments/form' %>
+
+<%# @story.comment.each do %>
+  Comment One
+<%# end %>
+
+
+
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               stories_path, :class => 'btn'  %>

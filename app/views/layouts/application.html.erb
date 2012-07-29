@@ -28,7 +28,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">VegastechApp</a>
+          <a class="brand" href="#">#VegasTech App</a>
           <div class="container nav-collapse">
             <ul class="nav">
               <% if current_user %>
@@ -36,9 +36,15 @@
               <% else %>
                 <li><%= link_to "Sign in", "/auth/twitter"  %></li>
               <% end %>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li><%= link_to "Jobs", "http://hirevegastech.com", target: 'new'  %></li>
             </ul>
+            <% if current_user %>
+              <ul class="nav pull-right">
+              <li class = "icon-user icon-white brand">
+                <%= current_user.twitter_handle %>
+              </li>
+            </ul>
+            <% end %>
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -47,25 +53,14 @@
     <div class="container">
       <div class="content">
         <div class="row">
-           <div class="span9">
+           <div class="span12">
               <%= yield %>
             </div>
-            <div class="span3">
-              <div class="well sidebar-nav">
-                <h3>Sidebar</h3>
-                <ul class="nav nav-list">
-                  <li class="nav-header">Sidebar</li>
-                  <li><%= link_to "Link1", "/path1"  %></li>
-                  <li><%= link_to "Link2", "/path2"  %></li>
-                  <li><%= link_to "Link3", "/path3"  %></li>
-                </ul>
-              </div><!--/.well -->
-            </div><!--/span-->
         </div><!--/row-->
       </div><!--/content-->
 
       <footer>
-        <p>&copy; Company 2012</p>
+        <p>&copy; 2012 - A Project by The Las Vegas Ruby User Group (@LVRUG)</p>
       </footer>
 
     </div> <!-- /container -->
@@ -74,6 +69,23 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
+
+
+  <!-- Beging Google Analytics Code -->
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-33716623-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
 
   </body>
 </html>
