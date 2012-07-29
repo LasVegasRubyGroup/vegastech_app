@@ -10,6 +10,9 @@ gem 'omniauth-twitter'
 gem 'twitter'
 gem 'twitter-text'
 gem 'tweetstream', '~> 1.0'
+gem 'foreman'
+gem 'twitter-bootstrap-rails'
+gem 'therubyracer', :platform => :ruby
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -18,9 +21,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'twitter-bootstrap-rails'
-  gem 'therubyracer', :platform => :ruby
-
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -41,19 +41,28 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+def darwin_only(require_as)
+  RUBY_PLATFORM.include?('darwin') && require_as
+end
+
+def linux_only(require_as)
+  RUBY_PLATFORM.include?('linux') && require_as
+end
+
 group :development do
 	gem "rspec-rails"
   gem "guard-rspec"
   gem "guard-spork"
 
-# mac
-  gem "rb-fsevent" if RUBY_PLATFORM.downcase.include?("darwin")
-  gem "growl" if RUBY_PLATFORM.downcase.include?("darwin")
+  # mac
+  gem "rb-fsevent", require: darwin_only('rb-fsevent')
+  gem "growl", require: darwin_only('growl')
 
-# linux
-  gem 'rb-inotify' if RUBY_PLATFORM.downcase.include?("linux")
-  gem 'libnotify' if RUBY_PLATFORM.downcase.include?("linux")
+  # linux
+  gem 'rb-inotify', require: linux_only('rb-inotify')
+  gem 'libnotify', require: linux_only('libnotify')
 
+  gem 'git-deploy'
 end
 
 group :test do
@@ -61,4 +70,9 @@ group :test do
   gem "factory_girl_rails"
   gem "database_cleaner"
   gem "capybara"
+end
+
+group :production do
+  gem "mysql2"
+  gem "unicorn"
 end
