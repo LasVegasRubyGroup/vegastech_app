@@ -16,6 +16,14 @@ class Story < Post
     end
   end
 
+  def self.create_from_tweet(tweet)
+    self.create!(
+      twitter_id: tweet.id.to_s,
+      twitter_handle: "@#{tweet.user.screen_name}",
+      content: tweet.text,
+      tweeted_at: tweet.created_at)
+  end
+
   private
 
   def self_love
