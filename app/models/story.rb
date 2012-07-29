@@ -24,6 +24,14 @@ class Story < Post
       tweeted_at: tweet.created_at)
   end
 
+  def self.find_or_create_by_tweet(tweet)
+    if story = self.find_by_twitter_id(tweet.id)
+      story
+    else
+      self.create_from_tweet(tweet)
+    end
+  end
+
   private
 
   def self_love

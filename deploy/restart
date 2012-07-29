@@ -1,4 +1,9 @@
 #!/bin/sh
+
 sudo /usr/sbin/service lvrug stop
 sudo /usr/sbin/service lvrug start
+
+sudo /usr/sbin/service lvrug-stream stop
+sudo /usr/sbin/service lvrug-stream start
+
 echo "restarting app"
