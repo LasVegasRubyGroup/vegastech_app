@@ -9,12 +9,14 @@ class Post < ActiveRecord::Base
   attr_accessible :content, :twitter_handle, :tweeted_at
 
   def self.ranked
-    order('(votes_count / tweeted_at) DESC')
+    # If you know a better way, please let me know.
+    case ActiveRecord::Base.connection.adapter_name
+    when 'SQLite'
+      order("(votes_count / ((strftime('%s','now') - strftime('%s', tweeted_at)) / 86401)) DESC")
+    when 'Mysql2'
+      order('(votes_count / ((UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(tweeted_at)) / 86401)) DESC')
+    end
   end
-
-  # def age
-  #   (Time.now - tweeted_at) / 1.days + 1
-  # end
 
   def vote_count
     votes_count
