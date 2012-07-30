@@ -4,3 +4,4 @@ jQuery ->
     placement: 'bottom'
   });  $(".tooltip").tooltip()
   $("a[rel=tooltip]").tooltip()
+  $('.dropdown-toggle').dropdown()
