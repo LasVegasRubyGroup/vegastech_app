@@ -1,4 +1,6 @@
 jQuery ->
   $("a[rel=popover]").popover()
-  $(".tooltip").tooltip()
+  $("img[rel=popover]").popover({
+    placement: 'bottom'
+  });  $(".tooltip").tooltip()
   $("a[rel=tooltip]").tooltip()
