@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
       age_calculation = "((strftime('%s','now') - strftime('%s', tweeted_at)) / 60 / 60)"
       order("(votes_count - 1) / (#{age_calculation} + 2) * #{age_calculation} * (#{age_calculation} * 0.8) DESC")
     when 'Mysql2'
-      order("(votes_count - 1) / (((UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(tweeted_at)) / 60 / 60) + 2) ^ 1.8 DESC")
+      order('((votes_count - 1) / POW((((UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(tweeted_at)) / 3600) + 2), 1.8)) DESC')
     end
   end
 
