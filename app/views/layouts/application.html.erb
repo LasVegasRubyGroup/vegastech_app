@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "#VegasTech News" %></title>
+    <link rel="apple-touch-icon-precomposed" href="/assets/apple-touch-icon-iphone.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/apple-touch-icon-ipad.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/apple-touch-icon-iphone4.png" />
+    <title><%= content_for?(:title) ? yield(:title) : "#VegasTech Bulletin Board" %></title>
     <%= csrf_meta_tags %>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -31,7 +34,10 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="#">#VegasTech News</a>
+
+                <a class="brand hidden-phone" href="#">#VegasTech Bulletin Board</a>
+                <a class="brand visible-phone" href="#">#VegasTech BB</a>
+
                 <div class="container nav-collapse">
                   <ul class="nav">
                     <% if current_user %>

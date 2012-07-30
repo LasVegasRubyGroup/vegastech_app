@@ -2,6 +2,9 @@
   <div class="story" data-id="<%= story.id %>">
     <div class="row">
       <div class="content">
+    <%= image_tag(asset_path('pin.png'), class: 'left-pin visible-desktop') %>
+    <%= image_tag(asset_path('pin.png'), class: 'right-pin visible-desktop') %>
+    <%= image_tag(asset_path('pin.png'), class: 'center-pin hidden-desktop') %>
         <div class="span7">
           <%= auto_link(story.content, url_target: '_blank').html_safe %>
 
