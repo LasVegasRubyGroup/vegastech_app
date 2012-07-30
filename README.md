@@ -25,6 +25,10 @@ If you need to pull in recent tweets, run:
   rake vegastech:tweet_catcher
 
 
+git push production master
+
+Note: don't kill the process, it will f things up.
+
 TODO
 
 To do conversations is a bit more complicated that first thought. The stream does not include replies, unless they have the hashtag in the actual reply, which is useless to us. So in order to track full converstations, the original tweet id has to be sent to an undocumented API url (https://api.twitter.com/1/related_results/show/229658874305728512.json?include_entities=1). This returns replies associated with the original tweet.
