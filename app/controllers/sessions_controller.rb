@@ -2,7 +2,10 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by_uid(auth_hash['uid'])
     unless user
-      user = User.create(twitter_handle: twitter_handle, uid: auth_hash['uid'])
+      user = User.create(
+        twitter_handle: twitter_handle,
+        uid: auth_hash['uid'],
+        auth_credentials: auth_hash.credentials.token + ':' + auth_hash.credentials.secret)
     end
     session[:user_id] = user.id
     redirect_to root_url
@@ -22,6 +25,4 @@ class SessionsController < ApplicationController
   def twitter_handle
     "@" + auth_hash['info']['nickname']
   end
-
-  
 end
