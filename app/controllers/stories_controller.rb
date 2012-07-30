@@ -4,8 +4,6 @@ class StoriesController < ApplicationController
   def index
     @stories = Story.ranked.page(params[:page]).limit(50)
 
-    raise @stories.to_sql.inspect
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @stories }
