@@ -7,6 +7,8 @@ preload_app true
 
 pid "#{root_path}/tmp/pids/unicorn.pid"
 
+# listen "#{root_path}/tmp/pids/unicorn.sock", backlog: 2048
+
 stderr_path "#{root_path}/log/unicorn.stderr.log"
 stdout_path "#{root_path}/log/unicorn.stdout.log"
 
