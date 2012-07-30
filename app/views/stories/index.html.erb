@@ -1,5 +1,5 @@
 <% @stories.each do |story| %>
-  <div class="story" data-id="<%= story.id %>">
+  <div class="story" data-id="<%= story.id %>" data-score="<%= story.score %>">
     <div class="row">
       <div class="content">
         <%= image_tag(asset_path('pin.png'), class: 'left-pin visible-desktop') %>

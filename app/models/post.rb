@@ -12,10 +12,16 @@ class Post < ActiveRecord::Base
     # If you know a better way, please let me know.
     case ActiveRecord::Base.connection.adapter_name
     when 'SQLite'
-      order("(votes_count / ((strftime('%s','now') - strftime('%s', tweeted_at)) / 86401)) DESC")
+      # Nasty because SQLite does not have a ^ operator.
+      age_calculation = "((strftime('%s','now') - strftime('%s', tweeted_at)) / 60 / 60)"
+      order("(votes_count - 1) / (#{age_calculation} + 2) * #{age_calculation} * (#{age_calculation} * 0.8) DESC")
     when 'Mysql2'
-      order('(votes_count / ((UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(tweeted_at)) / 86401)) DESC')
+      order("(votes_count - 1) / (((UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(tweeted_at)) / 60 / 60) + 2) ^ 1.8) DESC")
     end
+  end
+
+  def score
+    (votes_count - 1) / ((Time.now - tweeted_at).hours) ** 1.8
   end
 
   def vote_count
