@@ -86,7 +86,8 @@
       <div class="row">
         <div class="span12">
           <div class="footer">
-            <p>&copy; 2012 - A Project by The Las Vegas Ruby User Group (@LVRUG)</p>
+            <p>&copy; <%= Date.today.year %> - A Project by <%= link_to('The Las Vegas Ruby User Group', 'http://lvrug.org', target: '_blank') %> (<%= link_to('@LVRUG', 'http://twitter.com/lvrug', target: '_blank') %></p>
+            <p><%= link_to(image_tag(asset_path('lvrug_logo.png')), 'http://lvrug.org', target: '_blank') %></p>
           </div>
         </div>
       </div>
