@@ -44,12 +44,13 @@ class VotesController < ApplicationController
 
     respond_to do |format|
       if current_user.up_vote(@story)
-        format.html { redirect_to stories_path, notice: 'Vote was successfully created.' }
+        @story.reload
+        format.html { redirect_to(stories_path, notice: 'Vote was successfully created.') }
         format.js
       else
         @error = 'Your vote was invalid'
         flash[:error] = @error
-        format.html { redirect_to stories_path }
+        format.html { redirect_to(stories_path) }
         format.js
       end
     end

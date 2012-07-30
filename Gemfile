@@ -13,6 +13,8 @@ gem 'tweetstream', '~> 1.0'
 gem 'foreman'
 gem 'twitter-bootstrap-rails', '2.0.7'
 gem 'therubyracer', :platform => :ruby
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -5,17 +5,6 @@ class Story < Post
 
   after_save :self_love
 
-  def self.ranked
-    Story.all.sort do |a,b| 
-      r = b.rank <=> a.rank
-      if r == 0
-        b.tweeted_at <=> a.tweeted_at
-      else
-        r
-      end
-    end
-  end
-
   def self.create_from_tweet(tweet)
     self.create!(
       twitter_id: tweet.id.to_s,
@@ -39,5 +28,4 @@ class Story < Post
       votes.create(twitter_handle: twitter_handle, value: 1)
     end
   end
-
 end

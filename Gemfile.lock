@@ -30,6 +30,8 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.2)
     arel (3.0.2)
+    bootstrap-will_paginate (0.0.7)
+      will_paginate
     builder (3.0.0)
     capybara (1.1.2)
       mime-types (>= 1.16)
@@ -220,6 +222,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    will_paginate (3.0.3)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
@@ -227,6 +230,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-will_paginate
   capybara
   coffee-rails (~> 3.2.1)
   database_cleaner
@@ -253,3 +257,4 @@ DEPENDENCIES
   twitter-text
   uglifier (>= 1.0.3)
   unicorn
+  will_paginate

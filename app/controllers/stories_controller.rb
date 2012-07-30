@@ -2,7 +2,7 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index
-    @stories = Story.ranked
+    @stories = Story.ranked.page(params[:page]).limit(100)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,0 +1,100 @@
+@import "twitter/bootstrap/mixins";
+
+@lightYellow: #fdfcf7;
+@darkYellow: darken(@lightYellow, 50%);
+
+.story {
+  margin-bottom: 20px;
+
+  .content {
+    .border-radius(10px);
+    font-size: 20px;
+    line-height: 26px;
+    color: #555;
+    padding: 25px;
+
+    background: white;
+
+    .vote {
+      .border-radius(5px);
+
+      float: right;
+      background: @darkYellow;
+      padding: 15px;
+      margin: 0 0 25px 20px;
+      font-size: 200%;
+
+      &:hover {
+        text-decoration: none;
+        background: darken(@darkYellow, 15%);
+      }
+
+      i {
+        color: white;
+
+        &:hover {
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
+
+    @media (max-width: 767px) {
+      .vote {
+        float: left;
+        padding: 0 9px 5px 10px;
+        margin: 10px 10px 0 0;
+
+        i {
+          font-size: 60%;
+        }
+      }
+
+      .rank {
+        display: inline-block;
+        margin-top: 15px;
+      }
+    }
+
+    .rank {
+      text-align: right;
+      color: #777;
+      font-size: 120%;
+    }
+
+    .metadata {
+      margin-top: 25px;
+
+      img {
+        .border-radius(10px);
+        float: left;
+        margin-right: 10px;
+      }
+
+      .handle {
+        display: block;
+        padding-top: 15px;
+        line-height: 10px;
+        color: #bbb;
+
+        a {
+          color: #bbb;
+          text-decoration: none;
+        }
+      }
+
+      .age {
+        padding-right: 10px;
+
+        a {
+          color: #bbb;
+          font-size: 65%;
+        }
+      }
+    }
+  }
+
+  .rank {
+    clear: both;
+  }
+}

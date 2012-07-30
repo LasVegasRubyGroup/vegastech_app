@@ -1,41 +1,35 @@
-<%- model_class = Story.new.class -%>
+<% @stories.each do |story| %>
+  <div class="story" data-id="<%= story.id %>">
+    <div class="row">
+      <div class="content">
+        <div class="span7">
+          <%= auto_link(story.content, url_target: '_blank').html_safe %>
 
-    <% @stories.each do |story| %>
-      <div class = 'story well' data-id="<%= story.id %>">
-              <p class = "pull-left">
+          <div class="metadata">
+            <a href="<%= link_from_handle(story.twitter_handle) %>" target="_blank"><img src="https://api.twitter.com/1/users/profile_image?screen_name=<%= story.twitter_handle.gsub(/^@/, '') %>&size=normal"></a>
+            <span class="handle"><%= link_to(story.twitter_handle, link_from_handle(story.twitter_handle), target: '_blank') %></span>
+            <span class="age">
+              <%= link_to("#{time_ago_in_words(story.tweeted_at)} ago".html_safe, link_from_story(story), target: 'blank') %>
+            </span>
+          </div>
+        </div>
+
+        <div class="span2">
           <% if current_user && !current_user.voted_on?(story) %>
-            <%= link_to "<i class='icon-thumbs-up'></i>".html_safe, story_votes_path(story), method: 'post', remote: true %>
+            <%= link_to("<i class='icon-thumbs-up icon-white'></i>".html_safe, story_votes_path(story), class: 'vote', method: 'post', remote: true) %>
+          <% elsif current_user && current_user.voted_on?(story) %>
+            <div class="vote"><%= "<i class='icon-ok icon-white'></i>".html_safe %></div>
+          <% else current_user %>
+            <%= link_to("<i class='icon-thumbs-up icon-white'></i>".html_safe, '/auth/twitter', class: 'vote') %>
           <% end %>
-        </p>
-        <span class="contnet">
-          <%=  auto_link(story.content, :url_target => '_blank').html_safe %>
-        </span>
-        <br />
-        <span class='rank'><%= "#{story.vote_count} points" %>
-        <%= "#{time_ago_in_words(story.tweeted_at)} ago".html_safe %>
-        </span>
-        <%= "by #{auto_link(story.twitter_handle).html_safe}".html_safe %>
-        <%#= story.story_id %>
-        <% if story.comments.present? %>
-          <%= link_to 'comments', story %>
-        <% else %>
-          <%= link_to 'comment', story %>
-        <% end %>
 
-        </span>
-        <% if current_user && current_user.admin? %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_story_path(story), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      story_path(story),
-                      :method => :delete,
-                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-                      :class => 'btn btn-mini btn-danger' %>
-        <% end %>
+          <div class="rank"><%= "#{story.vote_count} points" %></div>
+        </div>
+
+        <br class="clear">
       </div>
-    <% end %>
+    </div>
+  </div>
+<% end %>
 
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_story_path,
-            :class => 'btn btn-primary' %>
+<%= will_paginate(@stories, previous_label: '&#8592;', next_label: '&#8594;', inner_window: 0, outer_window: 0) %>
