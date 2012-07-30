@@ -21,7 +21,7 @@ class Post < ActiveRecord::Base
   end
 
   def score
-    (votes_count - 1) / ((Time.now - tweeted_at).hours + 2) ** 1.8
+    (votes_count - 1) / (((Time.now - tweeted_at) / 3600) + 2) ** 1.8
   end
 
   def vote_count
