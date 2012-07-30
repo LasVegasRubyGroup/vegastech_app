@@ -2,9 +2,10 @@
   <div class="story" data-id="<%= story.id %>">
     <div class="row">
       <div class="content">
-    <%= image_tag(asset_path('pin.png'), class: 'left-pin visible-desktop') %>
-    <%= image_tag(asset_path('pin.png'), class: 'right-pin visible-desktop') %>
-    <%= image_tag(asset_path('pin.png'), class: 'center-pin hidden-desktop') %>
+        <%= image_tag(asset_path('pin.png'), class: 'left-pin visible-desktop') %>
+        <%= image_tag(asset_path('pin.png'), class: 'right-pin visible-desktop') %>
+        <%= image_tag(asset_path('pin.png'), class: 'center-pin hidden-desktop') %>
+
         <div class="span7">
           <%= auto_link(story.content, url_target: '_blank').html_safe %>
 
@@ -19,7 +20,7 @@
 
         <div class="span2">
           <% if current_user && !current_user.voted_on?(story) %>
-            <%= link_to("<i class='icon-thumbs-up icon-white'></i>".html_safe, story_votes_path(story), class: 'vote', method: 'post', remote: true) %>
+            <%= link_to("<i class='icon-thumbs-up icon-white'></i>".html_safe, "#retweet-modal-#{story.twitter_id}", 'data-toggle' => 'modal', class: 'vote') %>
           <% elsif current_user && current_user.voted_on?(story) %>
             <div class="vote"><%= "<i class='icon-ok icon-white'></i>".html_safe %></div>
           <% else current_user %>
@@ -31,6 +32,31 @@
 
         <br class="clear">
       </div>
+    </div>
+  </div>
+
+  <div class="modal hide" id="retweet-modal-<%= story.twitter_id %>">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      <h3>Would you like to retweet this as well?</h3>
+    </div>
+    <div class="modal-body">
+      <div class="story">
+        <div class="content">
+          <%= auto_link(story.content, url_target: '_blank').html_safe %>
+          <div class="metadata">
+            <a href="<%= link_from_handle(story.twitter_handle) %>" target="_blank"><img src="https://api.twitter.com/1/users/profile_image?screen_name=<%= story.twitter_handle.gsub(/^@/, '') %>&size=normal"></a>
+            <span class="handle"><%= link_to(story.twitter_handle, link_from_handle(story.twitter_handle), target: '_blank') %></span>
+            <span class="age">
+              <%= link_to("#{time_ago_in_words(story.tweeted_at)} ago".html_safe, link_from_story(story), target: 'blank') %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <%= link_to('Just Vote', story_votes_path(story), 'data-dismiss' => 'modal', class: 'btn', method: 'post', remote: true) %>
+      <%= link_to('Vote &amp; Retweet!'.html_safe, story_votes_path(story, retweet: 1), 'data-dismiss' => 'modal', class: 'btn btn-primary', method: 'post', remote: true) %>
     </div>
   </div>
 <% end %>
