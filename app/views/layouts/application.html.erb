@@ -40,11 +40,8 @@
 
                 <div class="container nav-collapse">
                   <ul class="nav">
-                    <% if current_user %>
-                      <li><%= link_to "Sign out", "/sessions/destroy", method: 'delete'  %></li>
-                    <% else %>
-                      <li><%= link_to "Sign in", "/auth/twitter"  %></li>
-                    <% end %>
+                    <li><%= link_to "Recent", recent_path  %></li>
+
                     <li><%= link_to "Jobs", "http://hirevegastech.com", target: 'new'  %></li>
                     <li class='dropdown visible-desktop'><%= link_to "Calendars", '#', :class => 'dropdown-toggle', "data-toggle" => "dropdown"  %>
                       <ul class = 'dropdown-menu'>
@@ -57,13 +54,17 @@
                     <li class='hidden-desktop'><%= link_to 'VegasTech.com Events Calendar', 'http://vegastech.com/events/', target: 'new'  %></li>
                     <li class='hidden-desktop'><%= link_to 'Ayloo Community Calendar', 'http://ayloo.net/mobile/calendar.php', target: 'new'  %></li>
                   </ul>
-                  <% if current_user %>
-                    <ul class="nav pull-right">
-                      <li class = "icon-user icon-white brand">
-                        <%= current_user.twitter_handle %>
+                  <ul class="nav pull-right">
+                    <% if current_user %>
+                      <li>
+                          <%= link_to('<i class="icon-user icon-white"></i>
+'.html_safe + current_user.twitter_handle, '#') %>
+                          <li><%= link_to "Sign out", "/sessions/destroy", method: 'delete'  %></li>
                       </li>
-                    </ul>
-                  <% end %>
+                    <% else %>
+                      <li><%= link_to "Sign in", "/auth/twitter"  %></li>
+                    <% end %>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -76,6 +77,11 @@
       <div class="content">
         <div class="row">
            <div class="offset1 span10 offset1">
+              <div class="alert alert-info hidden-desktop">
+                <center>
+                  <%= "Currently signed in as #{current_user.twitter_handle}"%>
+                </center>
+              </div>
              <%= yield %>
            </div>
         </div>

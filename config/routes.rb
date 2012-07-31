@@ -14,6 +14,7 @@ VegastechApp::Application.routes.draw do
 
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/sign_out', to: 'sessions#destroy'
+  match '/recent', to: 'info#recent', as: :recent
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
