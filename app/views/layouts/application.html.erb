@@ -77,15 +77,15 @@
       <div class="content">
         <div class="row">
            <div class="offset1 span10 offset1">
-              <div class="alert alert-info hidden-desktop">
-                <% if logged_in? %>
+              <% if logged_in? %>
+                <div class="alert alert-info hidden-desktop">
                   <center>
                     <%= "Currently signed in as #{current_user.twitter_handle}" %>
                   </center>
-                <% end %>
-              </div>
-             <%= yield %>
-           </div>
+                </div>
+              <% end %>
+            <%= yield %>
+          </div>
         </div>
       </div>
     </div>
