@@ -8,12 +8,13 @@ class SessionsController < ApplicationController
         auth_credentials: auth_hash.credentials.token + ':' + auth_hash.credentials.secret)
     end
     session[:user_id] = user.id
-    redirect_to root_url
+    redirect_to(root_url, notice: "Successfully signed in via twitter.")
+
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url
+    redirect_to(root_url, notice: "Signed out Successfully.")
   end
 
   private

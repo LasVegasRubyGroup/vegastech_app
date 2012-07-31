@@ -62,7 +62,9 @@
                           <li><%= link_to "Sign out", "/sessions/destroy", method: 'delete'  %></li>
                       </li>
                     <% else %>
-                      <li><%= link_to "Sign in", "/auth/twitter"  %></li>
+                      <li>
+                        <%= link_to(image_tag('bird_black_16_0.png', class: 'black_bird') + "Sign in", "/auth/twitter")  %>
+                      </li>
                     <% end %>
                   </ul>
                 </div>
@@ -77,6 +79,13 @@
       <div class="content">
         <div class="row">
            <div class="offset1 span10 offset1">
+              <% unless flash[:notice].blank? %>
+                <div class="alert alert-success fade in">
+                  <a class="close" data-dismiss="alert" href="&times;">×</a>
+                  <h3><%= flash[:notice] %> </h3>
+                </div>
+              <% end %>
+
               <% if logged_in? %>
                 <div class="alert alert-info hidden-desktop">
                   <center>
