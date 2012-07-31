@@ -1,6 +1,6 @@
 class TweetScraper
   def self.get_latest
-    Twitter.search("#{ENV['TRACK_HASHTAG']} -rt", rpp: 5).results.each do |tweet|
+    Twitter.search("#{ENV['TRACK_HASHTAG']} -rt", rpp: 100).results.each do |tweet|
       begin
         story = Story.find_or_create_by_tweet(tweet)
         print '.'
