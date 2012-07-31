@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Flag do
   context "when validating a flag" do
-    let(:story) { Story.create(twitter_handle: "@fredguest", content: "once upon a time") }
+    let(:story) { Story.create(twitter_handle: "@lvrug", content: "once upon a time", from_user_name: "Las Vegas Ruby Group") }
     let(:flag) { story.flags.build(twitter_handle: "@fredguest") }
     it "should be valid with required values" do
       flag.should be_valid

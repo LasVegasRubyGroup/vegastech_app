@@ -3,8 +3,8 @@ require 'spec_helper'
 
 describe Vote do
   context "when validating a vote" do
-    let(:story) { Story.create(twitter_handle: "@fredguest", content: "once upon a time") }
-    let(:vote) { story.votes.build(twitter_handle: "@bobfirestone", value: 1) }
+    let(:story) { Story.create(twitter_handle: "@lvrug", content: "once upon a time", from_user_name: "Las Vegas Ruby Group") }
+    let(:vote) { story.votes.build(twitter_handle: "@rubyweekend", value: 1) }
     it "should be valid with required values" do
       vote.should be_valid
     end
@@ -51,7 +51,7 @@ describe Vote do
 
     it "should only allow one vote per twitter_handle" do
       vote.save
-      vote2 = story.votes.build(twitter_handle: "@fredguest", value: 1)
+      vote2 = story.votes.build(twitter_handle: "@lvrug", value: 1)
       vote2.should be_invalid
     end
 
