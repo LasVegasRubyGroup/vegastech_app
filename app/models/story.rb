@@ -11,7 +11,8 @@ class Story < Post
       twitter_id: tweet.id.to_s,
       twitter_handle: "@#{username}",
       content: tweet.text,
-      tweeted_at: tweet.created_at)
+      tweeted_at: tweet.created_at,
+      from_user_name: tweet.from_user_name)
   end
 
   def self.find_or_create_by_tweet(tweet)

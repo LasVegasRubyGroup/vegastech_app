@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120730032019) do
+ActiveRecord::Schema.define(:version => 20120731024414) do
 
   create_table "flags", :force => true do |t|
     t.string   "twitter_handle", :null => false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20120730032019) do
     t.string   "twitter_id"
     t.datetime "tweeted_at"
     t.integer  "votes_count",    :default => 0
+    t.string   "from_user_name"
   end
 
   add_index "posts", ["story_id"], :name => "index_posts_on_story_id"

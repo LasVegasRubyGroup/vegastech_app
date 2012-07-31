@@ -2,11 +2,11 @@ class Post < ActiveRecord::Base
   has_many :votes
   has_many :flags
 
-  validates_presence_of :twitter_handle
+  validates_presence_of :twitter_handle, :from_user_name
   validates_presence_of :content
   validates_format_of :twitter_handle, with: /\A@\w+\Z/
 
-  attr_accessible :content, :twitter_handle, :tweeted_at
+  attr_accessible :content, :twitter_handle, :tweeted_at, :from_user_name
 
   def self.ranked
     # If you know a better way, please let me know.
