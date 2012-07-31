@@ -10,7 +10,7 @@ class TweetScraper
           print 'r'
         end
       rescue Exception => e
-        print e
+        print 'x'
       end
     end
   end
