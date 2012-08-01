@@ -8,14 +8,15 @@ class Story < Post
   def self.create_from_tweet(tweet)
     #the twitter gem and twetstream gem hashes have different keys 
     username = tweet.respond_to?(:from_user) ? tweet.from_user : tweet.user.screen_name
-    from_user_name = tweet.respond_to?(:from_user_name) ? tweet.from_user_name : tweet.name
+    
+    from_user_name = tweet.respond_to?(:from_user_name) ? tweet.from_user_name : tweet.user.name
 
     self.create!(
       twitter_id: tweet.id.to_s,
       twitter_handle: "@#{username}",
       content: tweet.text,
       tweeted_at: tweet.created_at,
-      from_user_name: tweet.from_user_name)
+      from_user_name: from_user_name)
   end
 
   def self.find_or_create_by_tweet(tweet)
