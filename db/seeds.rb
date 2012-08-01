@@ -12,3 +12,23 @@
 		
 # end
 
+  User.create(twitter_handle: 'juddlillestrand')
+  User.create(twitter_handle: 'cloudsplitter')
+  User.create(twitter_handle: 'alex_peachey')
+  User.create(twitter_handle: 'jeremywoertink')
+  User.create(twitter_handle: 'jarhart')
+  User.create(twitter_handle: 'tenderlove')
+  User.create(twitter_handle: 'cloudsplitter')
+  User.create(twitter_handle: 'makenai')
+  User.create(twitter_handle: 'usrlib')
+  User.create(twitter_handle: 'bobfirestone')
+  User.create(twitter_handle: 'dylanbathurst')
+  User.create(twitter_handle: 'ryantm')
+  User.create(twitter_handle: 'VegasJelly')
+  User.create(twitter_handle: 'Shicholas')
+  User.create(twitter_handle: 'techguy')
+  User.create(twitter_handle: 'aylooinc')
+  User.create(twitter_handle: 'synshop')
+  User.create(twitter_handle: 'rickduggan')
+  User.create(twitter_handle: 'ScripSmart')
+  User.create(twitter_handle: 'dhh')
