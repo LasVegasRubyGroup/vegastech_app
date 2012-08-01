@@ -26,3 +26,6 @@ TweetStream::Client.new.on_error do |message|
 end.track(ENV['TRACK_HASHTAG']) do |tweet|
   save_tweet(tweet)
 end
+
+#name in TweetStream
+#from from_user_name
