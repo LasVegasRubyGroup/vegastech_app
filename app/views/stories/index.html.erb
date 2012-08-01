@@ -56,8 +56,8 @@
       </div>
     </div>
     <div class="modal-footer">
-      <%= link_to('Just Vote', story_votes_path(story), 'data-dismiss' => 'modal', class: 'btn', method: 'post', remote: true) %>
-      <%= link_to('Vote &amp; Retweet!'.html_safe, story_votes_path(story, retweet: 1), 'data-dismiss' => 'modal', class: 'btn btn-primary', method: 'post', remote: true) %>
+      <%= link_to('No, Just Vote', story_votes_path(story), 'data-dismiss' => 'modal', class: 'btn', method: 'post', remote: true) %>
+      <%= link_to('Vote &amp; Retweet!'.html_safe + image_tag('retweet_on.png'), story_votes_path(story, retweet: 1), 'data-dismiss' => 'modal', class: 'btn btn-inverse', method: 'post', remote: true) %>
     </div>
   </div>
 <% end %>
