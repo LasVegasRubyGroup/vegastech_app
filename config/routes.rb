@@ -11,6 +11,8 @@ VegastechApp::Application.routes.draw do
   end
 
   resources :sessions, only: [:create, :destroy]
+  resources :users, only: [:index]
+
 
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/sign_out', to: 'sessions#destroy'
