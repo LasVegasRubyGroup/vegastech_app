@@ -6,7 +6,7 @@
     <li class="span2 head_shot">
       <div class="thumbnail ">
         <%= image_tag "https://api.twitter.com/1/users/profile_image?screen_name=#{ user.twitter_handle.gsub(/^@/, '')}&size=original" %>
-        <h3><%= "@#{user.twitter_handle}" %></h3>
+        <h3><%= user.twitter_handle %></h3>
       </div>
     </li>
   <% end %>
