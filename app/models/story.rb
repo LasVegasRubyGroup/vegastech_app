@@ -5,6 +5,8 @@ class Story < Post
 
   after_save :self_love
 
+  scope :weekly, -> { where("tweeted_at >= ?", (Time.now - 1.week)) } 
+
   def self.create_from_tweet(tweet)
     #the twitter gem and twetstream gem hashes have different keys 
     username = tweet.respond_to?(:from_user) ? tweet.from_user : tweet.user.screen_name

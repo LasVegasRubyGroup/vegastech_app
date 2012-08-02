@@ -17,6 +17,7 @@ VegastechApp::Application.routes.draw do
   match '/sign_out', to: 'sessions#destroy'
   match '/recent', to: 'info#recent', as: :recent
   match '/supporters', to: 'info#users', as: :users
+  match'/best_of_week/', to: 'info#best_of_week', as: :best_of_week
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

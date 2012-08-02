@@ -8,4 +8,8 @@ class InfoController < ApplicationController
     @users = User.all
   end
 
+  def best_of_week
+    @stories = Story.weekly.order('votes_count DESC').limit(25)
+  end
+
 end
