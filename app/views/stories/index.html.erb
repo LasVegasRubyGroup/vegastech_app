@@ -21,9 +21,9 @@
 
         <div class="span2">
           <% if current_user && !current_user.voted_on?(story) %>
-            <%= link_to("<i class='icon-thumbs-up icon-white'></i>".html_safe, "#retweet-modal-#{story.twitter_id}", 'data-toggle' => 'modal', class: 'vote') %>
+            <%= link_to("<i class='icon-white'> +1</i>".html_safe, "#retweet-modal-#{story.twitter_id}", 'data-toggle' => 'modal', class: 'vote') %>
           <% elsif current_user && current_user.voted_on?(story) %>
-            <div class="vote"><%= "<i class='icon-ok icon-white'></i>".html_safe %></div>
+            <div class=" vote voted"><%= "<i class='icon-ok icon-white'></i>".html_safe %></div>
           <% else current_user %>
             <%= link_to("<i class='icon-thumbs-up icon-white'></i>".html_safe, '/auth/twitter', class: 'vote') %>
           <% end %>
