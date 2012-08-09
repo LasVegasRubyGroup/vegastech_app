@@ -15,6 +15,8 @@ gem 'twitter-bootstrap-rails', '2.0.7'
 gem 'therubyracer', :platform => :ruby
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'sidekiq'
+gem 'rest-client'
 
 # Gems used only for assets and not required
 # in production environments by default.

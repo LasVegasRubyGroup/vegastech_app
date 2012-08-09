@@ -6,7 +6,7 @@ class TweetScraper
         print '.'
 
         Twitter.retweets(story.twitter_id).each do |retweet|
-          story.votes.create(twitter_handle: "@#{retweet.from_user}", value: 1)
+          story.votes.create(twitter_handle: "@#{retweet.from_user}", value: 1, twitter_id: retweet.id.to_s)
           print 'r'
         end
       rescue Exception => e
