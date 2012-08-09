@@ -3,6 +3,7 @@ class Story < Post
   attr_accessible :twitter_id
   validates :twitter_id, :uniqueness => true
 
+  after_create :queue_reply_checker
   after_save :self_love
 
   scope :weekly, -> { where("tweeted_at >= ?", (Time.now - 1.week)) } 
@@ -35,5 +36,12 @@ class Story < Post
     if id_changed?
       votes.create(twitter_handle: twitter_handle, value: 1)
     end
+  end
+
+  def queue_reply_checker
+    redis = Redis.new
+    redis.set twitter_id, twitter_id
+    redis.expire twitter_id, (24*60*60)
+    ReplyChecker.perform_in(12.minutes,twitter_id,twitter_id)
   end
 end
