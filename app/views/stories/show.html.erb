@@ -1,21 +1,7 @@
-
-    <%= render partial: 'stories/story', :locals => { :story => @story } %>
+<%= render partial: 'stories/story', :locals => { :story => @story } %>
     
 <h1> Discussion </h1>
 
 <% @comments.each do |comment| %>
       <%= render partial: 'comments/comment', :locals => { :story => comment } %>
 <% end %>
-
-
-<div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              stories_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_story_path(@story), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              story_path(@story),
-              :method => 'delete',
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-              :class => 'btn btn-danger' %>
-</div>
