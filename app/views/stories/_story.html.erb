@@ -1,0 +1,64 @@
+<div class="story" data-id="<%= story.id %>" data-score="<%= story.score %>">
+    <div class="row">
+      <div class="content">
+        <%= image_tag(asset_path('pin.png'), class: 'left-pin visible-desktop') %>
+        <%= image_tag(asset_path('pin.png'), class: 'right-pin visible-desktop') %>
+        <%= image_tag(asset_path('pin.png'), class: 'center-pin hidden-desktop') %>
+
+        <div class="span7">
+          <%= auto_link(story.content, url_target: '_blank').html_safe %>
+
+          <div class="metadata">
+            <a href="<%= link_from_handle(story.twitter_handle) %>" target="_blank">
+              <img src="https://api.twitter.com/1/users/profile_image?screen_name=<%= story.twitter_handle.gsub(/^@/, '') %>&size=normal" rel='popover' title='<center><%= story.from_user_name %></center>' data-content = "<center><img src='https://api.twitter.com/1/users/profile_image?screen_name=<%= story.twitter_handle.gsub(/^@/, '') %>&size=original'></center>" > </a>
+            <span class="handle"><%= link_to(story.twitter_handle, link_from_handle(story.twitter_handle), target: '_blank') %></span>
+            <span class="age">
+              <%= link_to("#{time_ago_in_words(story.tweeted_at)} ago".html_safe, link_from_story(story), target: 'blank') %>
+            </span>
+            <span class="comments">
+              <%= link_to("#{story.comments.size.to_i} Comments", story_path(story)) %>
+            </span>
+          </div>
+        </div>
+
+        <div class="span2">
+          <% if current_user && !current_user.voted_on?(story) %>
+            <%= link_to("<i class='icon-thumbs-up icon-white'></i>".html_safe, "#retweet-modal-#{story.twitter_id}", 'data-toggle' => 'modal', class: 'vote') %>
+          <% elsif current_user && current_user.voted_on?(story) %>
+            <div class="vote"><%= "<i class='icon-ok icon-white'></i>".html_safe %></div>
+          <% else current_user %>
+            <%= link_to("<i class='icon-thumbs-up icon-white'></i>".html_safe, '/auth/twitter', class: 'vote') %>
+          <% end %>
+
+          <div class="rank"><%= "#{story.vote_count} points" %></div>
+        </div>
+
+        <br class="clear">
+      </div>
+    </div>
+  </div>
+
+  <div class="modal hide" id="retweet-modal-<%= story.twitter_id %>">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      <h3>Would you like to retweet this as well?</h3>
+    </div>
+    <div class="modal-body">
+      <div class="story">
+        <div class="content">
+          <%= auto_link(story.content, url_target: '_blank').html_safe %>
+          <div class="metadata">
+            <a href="<%= link_from_handle(story.twitter_handle) %>" target="_blank"><img src="https://api.twitter.com/1/users/profile_image?screen_name=<%= story.twitter_handle.gsub(/^@/, '') %>&size=normal"></a>
+            <span class="handle"><%= link_to(story.twitter_handle, link_from_handle(story.twitter_handle), target: '_blank') %></span>
+            <span class="age">
+              <%= link_to("#{time_ago_in_words(story.tweeted_at)} ago".html_safe, link_from_story(story), target: 'blank') %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <%= link_to('Just Vote', story_votes_path(story), 'data-dismiss' => 'modal', class: 'btn', method: 'post', remote: true) %>
+      <%= link_to("Vote &amp; Retweet <i class = 'icon-retweet'></i>".html_safe, story_votes_path(story, retweet: 1), 'data-dismiss' => 'modal', class: 'btn btn-inverse', method: 'post', remote: true) %>
+    </div>
+  </div>
