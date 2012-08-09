@@ -14,7 +14,7 @@ class StoriesController < ApplicationController
   # GET /stories/1.json
   def show
     @story = Story.find(params[:id])
-    @comments = @story.comments
+    @comments = @story.comments.order('votes_count desc, created_at desc')
 
     respond_to do |format|
       format.html # show.html.erb
