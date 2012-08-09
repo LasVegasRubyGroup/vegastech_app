@@ -6,4 +6,7 @@ sudo /usr/sbin/service lvrug start
 sudo /usr/sbin/service lvrug-stream stop
 sudo /usr/sbin/service lvrug-stream start
 
+sudo /usr/sbin/service lvrug-queue stop
+sudo /usr/sbin/service lvrug-queue start
+
 echo "restarting app"
