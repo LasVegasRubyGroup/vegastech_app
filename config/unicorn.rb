@@ -1,7 +1,7 @@
 rails_env = ENV['RAILS_ENV'] || 'production'
 root_path = File.expand_path(File.dirname(__FILE__) + '/../')
 
-worker_processes 3
+worker_processes 1
 timeout 30
 preload_app true
 
