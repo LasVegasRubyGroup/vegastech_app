@@ -17,6 +17,9 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'sidekiq'
 gem 'rest-client'
+gem 'sinatra', require: false
+gem 'slim'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
