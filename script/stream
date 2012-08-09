@@ -7,9 +7,12 @@ def save_tweet(tweet)
     story = Story.find_or_create_by_tweet(retweet_of)
     story.votes.create(twitter_handle: "@#{tweet.user.screen_name}", value: 1)
     print 'r'
-  else
+  elsif tweet[:in_reply_to_user_id].nil?
     Story.create_from_tweet(tweet)
     print '.'
+  elsif tweet[:in_reply_to_user_id].present?
+    puts tweet
+    print 'n'
   end
 end
 
