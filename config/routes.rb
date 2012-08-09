@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 VegastechApp::Application.routes.draw do
   get "sessions/create"
 
@@ -11,7 +13,8 @@ VegastechApp::Application.routes.draw do
   end
 
   resources :sessions, only: [:create, :destroy]
-
+  
+  mount Sidekiq::Web, at: '/sidekiq'
 
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/sign_out', to: 'sessions#destroy'
