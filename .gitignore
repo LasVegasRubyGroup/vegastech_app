@@ -10,6 +10,9 @@
 # Ignore bundler config
 /.bundle
 
+# Ignore bin stubs
+/bin
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
@@ -19,3 +22,7 @@
 
 # Ignore the database.yml file
 /config/database.yml
+
+# Ignore the redis junk
+/.redis
+/redis.conf
