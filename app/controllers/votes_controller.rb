@@ -40,15 +40,15 @@ class VotesController < ApplicationController
   # POST /votes
   # POST /votes.json
   def create
-    @story = Story.find(params[:story_id])
+    @post = Post.find(params[:story_id])
 
     if params[:retweet].to_i == 1
-      current_user.twitter_client.retweet(@story.twitter_id)
+      current_user.twitter_client.retweet(@post.twitter_id)
     end
 
     respond_to do |format|
-      if current_user.up_vote(@story)
-        @story.reload
+      if current_user.up_vote(@post)
+        @post.reload
         format.html { redirect_to(stories_path, notice: 'Vote was successfully created.') }
         format.js
       else
