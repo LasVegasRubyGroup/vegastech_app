@@ -1,19 +1,18 @@
 class TwitterReplyFinder
-
   def check_replies(tweet_id,original_id)
-    results = RestClient.get checker_url_for(tweet_id)
+    results = RestClient.get(checker_url_for(tweet_id))
     tweets = JSON.parse(results)
-    comment_counter = 0
+    comments = []
     if tweets.any?
       story = Story.find_by_twitter_id(original_id)
       tweets.each do |tweet|
         unless comment_exists?(tweet)
-          create_comment(story,tweet) 
-          comment_counter += 1
+          comment = create_comment(story, tweet)
+          comments << comment
         end
       end
     end
-    comment_counter
+    comments
   end
 
   def comment_exists?(tweet)
@@ -53,5 +52,4 @@ class TwitterReplyFinder
   def checker_url_for(tweet_id)
     "https://api.twitter.com/1/related_results/show/#{tweet_id}.json?include_entities=1"
   end
-
 end

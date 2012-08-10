@@ -30,12 +30,12 @@ class Vote < ActiveRecord::Base
   end
 
   private
+
   def queue_reply_checker
     return true unless twitter_id.present?
     redis = Redis.new
-    redis.set twitter_id, post.twitter_id
-    redis.expire twitter_id, (24*60*60)
-    ReplyChecker.perform_in(12.minutes,twitter_id,post.twitter_id)
+    redis.set(twitter_id, post.twitter_id)
+    redis.expire(twitter_id, (24*60*60))
+    ReplyChecker.perform_in(1.minutes, twitter_id, post.twitter_id)
   end
-
 end
