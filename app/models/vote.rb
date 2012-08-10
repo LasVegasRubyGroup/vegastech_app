@@ -36,6 +36,6 @@ class Vote < ActiveRecord::Base
     redis = Redis.new
     redis.set(twitter_id, post.twitter_id)
     redis.expire(twitter_id, (24*60*60))
-    ReplyChecker.perform_in(1.minutes, twitter_id, post.twitter_id)
+    ReplyChecker.perform_in(10.minutes, twitter_id, post.twitter_id)
   end
 end

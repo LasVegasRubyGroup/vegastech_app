@@ -13,7 +13,7 @@ class Comment < Post
       redis = Redis.new
       redis.set(twitter_id, story.twitter_id)
       redis.expire(twitter_id, (24*60*60))
-      ReplyChecker.perform_in(11.minutes, twitter_id, story.twitter_id)
+      ReplyChecker.perform_in(10.minutes, twitter_id, story.twitter_id)
     end
   end
 end
