@@ -1,4 +1,4 @@
-<h3>Most votes within the past week</h3>
+<h1>Most votes within the past week</h1>
 
 <% @stories.each do |story| %>
     <%= render partial: 'stories/story', :locals => { :story => story } %>

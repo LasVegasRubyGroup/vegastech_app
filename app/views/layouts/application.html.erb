@@ -50,6 +50,13 @@
                       <li><%= link_to 'Ayloo Community Calendar', 'http://ayloo.net/mobile/calendar.php', target: 'new'  %></li>
                       </ul>
                     </li>
+                    <li class='dropdown visible-desktop'><%= link_to "Coworking", '#', :class => 'dropdown-toggle', "data-toggle" => "dropdown"  %>
+                      <ul class = 'dropdown-menu'>
+                        <li><%= link_to '/usr/lib Coworking "light"', 'http://usrlib.org/', target: 'new' %></li>
+                      <li><%= link_to 'CoBiz Coworking', 'http://cobizcoworking.com/', target: 'new'  %></li>
+                      <li><%= link_to 'The InNEVation Center Coworking', 'http://www.switchnap.com/pages/all-things-switch/switch-innevation.php', target: 'new'  %></li>
+                      </ul>
+                    </li>
                     <li class='hidden-desktop'><%= link_to '/usr/lib Events Calendar', 'http://usrlib.org/events', target: 'new' %></li>
                     <li class='hidden-desktop'><%= link_to 'VegasTech.com Events Calendar', 'http://vegastech.com/events/', target: 'new'  %></li>
                     <li class='hidden-desktop'><%= link_to 'Ayloo Community Calendar', 'http://ayloo.net/mobile/calendar.php', target: 'new'  %></li>
@@ -103,7 +110,7 @@
       <div class="row">
         <div class="span12">
           <div class="footer">
-            <p>&copy; <%= Date.today.year %> - A Project by <%= link_to('The Las Vegas Ruby User Group', 'http://lvrug.org', target: '_blank') %> (<%= link_to('@LVRUG', 'http://twitter.com/lvrug', target: '_blank') %></p>
+            <p>&copy; <%= Date.today.year %> - A Project by <%= link_to('The Las Vegas Ruby User Group', 'http://lvrug.org', target: '_blank') %> (<%= link_to('@LVRUG', 'http://twitter.com/lvrug', target: '_blank') %>)</p>
             <p><%= link_to(image_tag(asset_path('lvrug_logo.png')), 'http://lvrug.org', target: '_blank') %></p>
           </div>
         </div>
