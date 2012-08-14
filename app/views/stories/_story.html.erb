@@ -10,7 +10,7 @@
 
           <div class="metadata">
             <a href="<%= link_from_handle(story.twitter_handle) %>" target="_blank">
-              <img src="https://api.twitter.com/1/users/profile_image?screen_name=<%= story.twitter_handle.gsub(/^@/, '') %>&size=normal" rel='popover' title='<center><%= story.from_user_name %></center>' data-content = "<center><img src='https://api.twitter.com/1/users/profile_image?screen_name=<%= story.twitter_handle.gsub(/^@/, '') %>&size=original'></center>" > </a>
+              <img src="https://api.twitter.com/1/users/profile_image?screen_name=<%= story.twitter_handle.gsub(/^@/, '') %>&size=normal" height="48" width="48" rel='popover' title='<center><%= story.from_user_name %></center>' data-content = "<center><img src='https://api.twitter.com/1/users/profile_image?screen_name=<%= story.twitter_handle.gsub(/^@/, '') %>&size=original'></center>" > </a>
             <span class="handle"><%= link_to(story.twitter_handle, link_from_handle(story.twitter_handle), target: '_blank') %></span>
             <span class="age">
               <%= link_to("#{time_ago_in_words(story.tweeted_at)} ago".html_safe, link_from_story(story), target: 'blank') %>
@@ -48,7 +48,7 @@
         <div class="content">
           <%= auto_link(story.content, url_target: '_blank').html_safe %>
           <div class="metadata">
-            <a href="<%= link_from_handle(story.twitter_handle) %>" target="_blank"><img src="https://api.twitter.com/1/users/profile_image?screen_name=<%= story.twitter_handle.gsub(/^@/, '') %>&size=normal"></a>
+            <a href="<%= link_from_handle(story.twitter_handle) %>" target="_blank"><img src="https://api.twitter.com/1/users/profile_image?screen_name=<%= story.twitter_handle.gsub(/^@/, '') %>&size=normal height="48" width="48" "></a>
             <span class="handle"><%= link_to(story.twitter_handle, link_from_handle(story.twitter_handle), target: '_blank') %></span>
             <span class="age">
               <%= link_to("#{time_ago_in_words(story.tweeted_at)} ago".html_safe, link_from_story(story), target: 'blank') %>
