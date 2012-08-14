@@ -40,7 +40,7 @@
       padding: 15px;
       margin: 0 0 25px 20px;
       font-size: 200%;
-      width: 40px;
+      width: 30px;
       &:hover {
         text-decoration: none;
         background: darken(@darkYellow, 15%);
@@ -108,20 +108,13 @@
         }
       }
 
-      .age {
-        padding-right: 10px;
+      .age, .comments {
+        padding-right: 2px;
+        color: #bbb;
+        font-size: 65%;
 
         a {
           color: #bbb;
-          font-size: 65%;
-        }
-      }
-      .comments {
-        padding-right: 10px;
-
-        a {
-          color: #bbb;
-          font-size: 65%;
         }
       }
     }
@@ -129,5 +122,18 @@
 
   .rank {
     clear: both;
+  }
+}
+
+.comments {
+  margin-top: 15px;
+}
+
+.comment-form {
+  margin-top: 30px;
+
+  img {
+    .border-radius(10px);
+    width: 200px;
   }
 }

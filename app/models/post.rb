@@ -27,4 +27,8 @@ class Post < ActiveRecord::Base
   def vote_count
     votes_count
   end
+
+  def age_in_minutes(compare_with = :tweeted_at)
+    ((Time.now - self.send(compare_with)) / 60).to_i
+  end
 end

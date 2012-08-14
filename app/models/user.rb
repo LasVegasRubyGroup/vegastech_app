@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    false
+    ENV['ADMIN_HANDLES'].split(',').include?(twitter_handle.gsub(/^@/, ''))
   end
 
   def twitter_client

@@ -1,9 +1,19 @@
 require 'sidekiq/web'
 
 VegastechApp::Application.routes.draw do
-  get "sessions/create"
+  admin_constraint = lambda do |request|
+    if user_id = request.session['user_id']
+      User.find(user_id).admin?
+    end
+  end
 
-  resources :posts do 
+  constraints admin_constraint do
+    mount Sidekiq::Web, at: '/sidekiq'
+  end
+
+  get 'sessions/create'
+
+  resources :posts do
     resources :votes
   end
 
@@ -13,69 +23,12 @@ VegastechApp::Application.routes.draw do
   end
 
   resources :sessions, only: [:create, :destroy]
-  
-  mount Sidekiq::Web, at: '/sidekiq'
 
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/sign_out', to: 'sessions#destroy'
   match '/recent', to: 'info#recent', as: :recent
   match '/supporters', to: 'info#users', as: :users
-  match'/best_of_week/', to: 'info#best_of_week', as: :best_of_week
+  match '/best_of_week/', to: 'info#best_of_week', as: :best_of_week
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-    root :to => 'stories#index'
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+  root to: 'stories#index'
 end

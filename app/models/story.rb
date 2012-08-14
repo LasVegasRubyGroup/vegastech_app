@@ -40,8 +40,8 @@ class Story < Post
 
   def queue_reply_checker
     redis = Redis.new
-    redis.set twitter_id, twitter_id
-    redis.expire twitter_id, (24*60*60)
-    ReplyChecker.perform_in(12.minutes,twitter_id,twitter_id)
+    redis.set(twitter_id, twitter_id)
+    redis.expire(twitter_id, (24*60*60))
+    ReplyChecker.perform_in(10.minutes, twitter_id, twitter_id)
   end
 end
