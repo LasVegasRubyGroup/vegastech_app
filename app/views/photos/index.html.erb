@@ -1,0 +1,7 @@
+<% @photos.each do |photo| %>
+  <div class="photo">
+    <%= link_to(image_tag(photo.content + ':thumb'), story_path(photo.story)) %>
+  </div>
+<% end %>
+
+<%= will_paginate(@stories, previous_label: '&#8592;', next_label: '&#8594;', inner_window: 0, outer_window: 0) %>

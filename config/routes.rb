@@ -17,6 +17,11 @@ VegastechApp::Application.routes.draw do
     resources :votes
   end
 
+  resources :photos do
+    resources :votes
+    resources :comments
+  end
+
   resources :stories do
     resources :votes
     resources :comments

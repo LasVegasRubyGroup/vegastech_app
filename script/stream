@@ -11,7 +11,6 @@ def save_tweet(tweet)
     Story.create_from_tweet(tweet)
     print '.'
   elsif tweet[:in_reply_to_user_id].present?
-    puts tweet
     print 'n'
   end
 end

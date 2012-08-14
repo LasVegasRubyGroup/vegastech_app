@@ -6,20 +6,24 @@ class Story < Post
   after_create :queue_reply_checker
   after_save :self_love
 
-  scope :weekly, -> { where("tweeted_at >= ?", (Time.now - 1.week)) } 
+  scope :weekly, -> { where('tweeted_at >= ?', (Time.now - 1.week)) }
 
   def self.create_from_tweet(tweet)
-    #the twitter gem and twetstream gem hashes have different keys 
+    #the twitter gem and twetstream gem hashes have different keys
     username = tweet.respond_to?(:from_user) ? tweet.from_user : tweet.user.screen_name
-    
     from_user_name = tweet.respond_to?(:from_user_name) ? tweet.from_user_name : tweet.user.name
 
-    self.create!(
+    story = self.create(
       twitter_id: tweet.id.to_s,
       twitter_handle: "@#{username}",
       content: tweet.text,
       tweeted_at: tweet.created_at,
       from_user_name: from_user_name)
+
+    media = tweet.respond_to?(:media) ? tweet.media : tweet.entities[:media]
+    Photo.create_from_story_and_media(story, media) unless media.blank? || media.empty?
+
+    story
   end
 
   def self.find_or_create_by_tweet(tweet)
