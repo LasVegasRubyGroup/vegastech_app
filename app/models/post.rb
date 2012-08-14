@@ -8,6 +8,10 @@ class Post < ActiveRecord::Base
 
   attr_accessible :content, :twitter_handle, :tweeted_at, :from_user_name
 
+  def self.sorted(sorted_by = 'tweeted_at DESC')
+    order(sorted_by)
+  end
+
   def self.ranked
     # If you know a better way, please let me know.
     case ActiveRecord::Base.connection.adapter_name
