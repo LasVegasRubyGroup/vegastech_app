@@ -29,7 +29,7 @@ VegastechApp::Application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
 
-  match '/rss/:count.rss', to: 'rss#index', as: :rss
+  match '/rss/:count', to: 'rss#index', format: 'rss', as: :rss
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/sign_out', to: 'sessions#destroy'
   match '/recent', to: 'info#recent', as: :recent
