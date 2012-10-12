@@ -2,6 +2,10 @@
 
 Las Vegas Ruby User Group Application for #VegasTech.
 
+## Demo
+
+http://news.lvrug.org
+
 ## Development
 
 Create a `.env` file in the root of your repository, replacing each with your
