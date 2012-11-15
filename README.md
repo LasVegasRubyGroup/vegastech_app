@@ -1,35 +1,53 @@
-vegastech_app
-=============
+# Vegas Tech App
 
-Las Vegas Ruby User Group Application for #VegasTech
+Las Vegas Ruby User Group Application for #VegasTech.
 
-change/create .env file
+## Demo
 
-Sample:
+http://news.lvrug.org
 
-  export TWITTER_CONSUMER_KEY=yourkey
-  export TWITTER_CONSUMER_SECRET=yoursecreet
-  export TWITTER_OAUTH_TOKEN=326622887-yourtoken
-  export TWITTER_OAUTH_TOKEN_SECRET=yourtokensecret
+## Development
 
-  export TRACK_HASHTAG=vegastech
+Create a `.env` file in the root of your repository, replacing each with your
+own consumer key and secret along with your OAuth token and secret:
 
-Run `source .env` in your terminal to get these environment variables loaded.
+```bash
+export TWITTER_CONSUMER_KEY=yourkey
+export TWITTER_CONSUMER_SECRET=yoursecreet
+export TWITTER_OAUTH_TOKEN=326622887-yourtoken
+export TWITTER_OAUTH_TOKEN_SECRET=yourtokensecret
 
-To get the stream catcher started:
+export TRACK_HASHTAG=vegastech
+```
 
-  ./script/stream
+If necessary, you can [create a new Twitter app](https://dev.twitter.com/apps).
+To load these environment variables, source your `.env` in a terminal:
+
+```bash
+cd /path/to/vegastech_app && source .env
+```
+
+To start the stream catcher, run:
+
+```bash
+./script/stream
+```
 
 If you need to pull in recent tweets, run:
 
-  rake vegastech:tweet_catcher
+```bash
+rake vegastech:tweet_catcher
+```
 
+## Deployment
 
+```bash
 git push production master
+```
 
-Note: don't kill the process, it will f things up.
+**Note**: Don't kill the process, it will f things up.
 
-TODO
+## Todo
 
 To do conversations is a bit more complicated that first thought. The stream does not include replies, unless they have the hashtag in the actual reply, which is useless to us. So in order to track full converstations, the original tweet id has to be sent to an undocumented API url (https://api.twitter.com/1/related_results/show/229658874305728512.json?include_entities=1). This returns replies associated with the original tweet.
 
