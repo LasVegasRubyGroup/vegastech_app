@@ -1,12 +1,12 @@
 #!/bin/sh
 
-sudo /usr/sbin/service lvrug stop
-sudo /usr/sbin/service lvrug start
+sudo /usr/sbin/service bulletin_board stop
+sudo /usr/sbin/service bulletin_board start
 
-sudo /usr/sbin/service lvrug-stream stop
-sudo /usr/sbin/service lvrug-stream start
+sudo /usr/sbin/service bulletin_board-stream stop
+sudo /usr/sbin/service bulletin_board-stream start
 
-sudo /usr/sbin/service lvrug-queue stop
-sudo /usr/sbin/service lvrug-queue start
+sudo /usr/sbin/service bulletin_board-queue stop
+sudo /usr/sbin/service bulletin_board-queue start
 
 echo "restarting app"
