@@ -3,6 +3,9 @@
 sudo /usr/sbin/service bulletin_board stop
 sudo /usr/sbin/service bulletin_board start
 
+sudo /usr/sbin/service bulletin_board-web-1 stop
+sudo /usr/sbin/service bulletin_board-web-1 start
+
 sudo /usr/sbin/service bulletin_board-stream stop
 sudo /usr/sbin/service bulletin_board-stream start
 
