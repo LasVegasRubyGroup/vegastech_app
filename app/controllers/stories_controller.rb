@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   def index
-    @stories = Story.ranked.page(params[:page]).limit(50)
+    @stories = Story.within_past_month.ranked.page(params[:page]).limit(50)
   end
 
   def show

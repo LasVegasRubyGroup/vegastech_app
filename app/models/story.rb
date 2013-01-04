@@ -7,6 +7,8 @@ class Story < Post
   after_save :self_love
 
   scope :weekly, -> { where('tweeted_at >= ?', (Time.now - 1.week)) }
+  
+  scope :within_past_month, -> { where('tweeted_at >= ?', (Time.now - 1.month)) }
 
   def self.create_from_tweet(tweet)
     #the twitter gem and twetstream gem hashes have different keys
