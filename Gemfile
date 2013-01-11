@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'rails', '3.2.10' #need to wait until rails 3.2.8 - https://github.com/rspec/rspec-rails/issues/577
+gem 'rails', '3.2.11' #need to wait until rails 3.2.8 - https://github.com/rspec/rspec-rails/issues/577
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -19,7 +19,7 @@ gem 'sidekiq'
 gem 'rest-client'
 gem 'sinatra', require: false
 gem 'slim'
-
+gem 'turbolinks'
 
 # Gems used only for assets and not required
 # in production environments by default.
