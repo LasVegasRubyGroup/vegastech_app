@@ -1,7 +1,9 @@
+require 'bundler/capistrano'
 
 set :application, 'bulletin_board'
 set :repository,  'git://github.com/LasVegasRubyGroup/vegastech_app.git'
 
+set :bundle_flags, '--deployment --binstubs'
 set :scm, 'git'
 set :scm_verbose, true
 set :branch, 'master'
@@ -11,6 +13,10 @@ set :deploy_via, 'remote_cache'
 set :deploy_to, "/home/#{user}/applications/#{application}"
 set :use_sudo, false
 set :init_script, "/etc/init.d/#{application}"
+
+set :default_environment, {
+  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+}
 
 role :web, '66.209.73.11'
 role :app, '66.209.73.11'
