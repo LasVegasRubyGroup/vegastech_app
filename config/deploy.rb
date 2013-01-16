@@ -1,5 +1,7 @@
 require 'bundler/capistrano'
 
+load 'deploy/assets'
+
 set :application, 'bulletin_board'
 set :repository,  'git://github.com/LasVegasRubyGroup/vegastech_app.git'
 
@@ -32,6 +34,7 @@ require 'capistrano-unicorn'
 
 after 'deploy:restart', 'deploy:cleanup'
 after 'deploy:restart', 'unicorn:restart'
-after 'deploy:update_code' do
+before 'deploy:update_code' do
   customs.symlink
+  # assets.generate
 end
