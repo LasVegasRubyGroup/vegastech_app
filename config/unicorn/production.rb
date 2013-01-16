@@ -1,7 +1,7 @@
 require 'capistrano-unicorn'
 
 rails_env = ENV['RAILS_ENV'] || 'production'
-root_path = File.expand_path(File.dirname(__FILE__) + '/../')
+root_path = File.expand_path(File.dirname(__FILE__) + '/../../')
 
 worker_processes 1
 timeout 30
