@@ -1,3 +1,5 @@
+require 'capistrano-unicorn'
+
 rails_env = ENV['RAILS_ENV'] || 'production'
 root_path = File.expand_path(File.dirname(__FILE__) + '/../')
 
