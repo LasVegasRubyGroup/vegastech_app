@@ -48,11 +48,8 @@ group :development do
   # linux
   gem 'rb-inotify', require: linux_only('rb-inotify')
   gem 'libnotify', require: linux_only('libnotify')
-<<<<<<< HEAD
-  gem 'git-deploy'
   gem 'sextant'
-=======
->>>>>>> 6db77fbc822125217d3be21f50bc74cdb2b95172
+
 end
 
 group :test do
