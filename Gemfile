@@ -5,6 +5,7 @@ gem 'rails', '3.2.11' #need to wait until rails 3.2.8 - https://github.com/rspec
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'rake', '10.0.3'
 gem 'sqlite3'
 gem 'omniauth-twitter'
 gem 'twitter'

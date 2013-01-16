@@ -287,6 +287,7 @@ DEPENDENCIES
   mysql2
   omniauth-twitter
   rails (= 3.2.11)
+  rake (= 10.0.3)
   rb-fsevent
   rb-inotify
   rest-client
