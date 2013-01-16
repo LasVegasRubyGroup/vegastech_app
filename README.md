@@ -14,8 +14,9 @@ own consumer key and secret along with your OAuth token and secret:
 ```bash
 export TWITTER_CONSUMER_KEY=yourkey
 export TWITTER_CONSUMER_SECRET=yoursecreet
-export TWITTER_OAUTH_TOKEN=326622887-yourtoken
+export TWITTER_OAUTH_TOKEN=yourtoken
 export TWITTER_OAUTH_TOKEN_SECRET=yourtokensecret
+export ADMIN_HANDLES=yourtwitterhandle
 
 export TRACK_HASHTAG=vegastech
 ```

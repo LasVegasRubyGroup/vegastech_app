@@ -1,9 +1,6 @@
 source :rubygems
 
-gem 'rails', '3.2.11' #need to wait until rails 3.2.8 - https://github.com/rspec/rspec-rails/issues/577
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'rails', '3.2.11'
 
 gem 'sqlite3'
 gem 'omniauth-twitter'
@@ -15,7 +12,7 @@ gem 'twitter-bootstrap-rails', '2.0.7'
 gem 'therubyracer', :platform => :ruby
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-gem 'sidekiq'
+gem "sidekiq", "~> 2.6.4"
 gem 'rest-client'
 gem 'sinatra', require: false
 gem 'slim'
@@ -69,6 +66,7 @@ group :development do
   gem 'rb-inotify', require: linux_only('rb-inotify')
   gem 'libnotify', require: linux_only('libnotify')
   gem 'git-deploy'
+  gem 'sextant'
 end
 
 group :test do
