@@ -4,11 +4,18 @@ class Story < Post
   validates :twitter_id, :uniqueness => true
 
   after_create :queue_reply_checker
-  after_save :self_love
+  after_save :self_love, :promote_tweet
 
   scope :weekly, -> { where('tweeted_at >= ?', (Time.now - 1.week)) }
   
   scope :within_past_month, -> { where('tweeted_at >= ?', (Time.now - 1.month)) }
+
+  def promote_tweet
+    if votes_count == 5
+      Twitter.update("RT #{twitter_handle}: #{content}".truncate(140))
+    end
+  end
+
 
   def self.create_from_tweet(tweet)
     #the twitter gem and twetstream gem hashes have different keys
