@@ -1,1 +1,2 @@
 :namespace 'vegastech_bulletin_board'
+:concurrency: 3
