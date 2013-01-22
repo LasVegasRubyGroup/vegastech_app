@@ -4,7 +4,7 @@ require 'bundler/capistrano'
 set :application, 'bulletin_board'
 set :repository,  'git://github.com/LasVegasRubyGroup/vegastech_app.git'
 
-set(:bundle_cmd) { 'bundle' }
+set(:bundle_cmd) { 'bundle exec' }
 set :bundle_flags, '--deployment --binstubs'
 set :scm, 'git'
 set :scm_verbose, true
