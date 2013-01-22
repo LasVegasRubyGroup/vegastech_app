@@ -4,10 +4,10 @@ class Story < Post
   validates :twitter_id, :uniqueness => true
 
   after_create :queue_reply_checker
-  after_save :self_love, #:promote_tweet
+  after_save :self_love #:promote_tweet
 
   scope :weekly, -> { where('tweeted_at >= ?', (Time.now - 1.week)) }
-  
+
   scope :within_past_month, -> { where('tweeted_at >= ?', (Time.now - 1.month)) }
 
   def promote_tweet

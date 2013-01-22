@@ -1,5 +1,4 @@
 load 'deploy/assets'
-require 'capistrano-unicorn'
 
 set :application, 'bulletin_board'
 set :repository,  'git://github.com/LasVegasRubyGroup/vegastech_app.git'
@@ -16,7 +15,6 @@ set :deploy_to, "/home/#{user}/applications/#{application}"
 set :use_sudo, false
 set :init_script, "/etc/init.d/#{application}"
 
-
 set :sidekiq_cmd, "#{bundle_cmd} exec sidekiq"
 set :sidekiqctl_cmd, "#{bundle_cmd} exec sidekiqctl"
 set :sidekiq_timeout, 10
@@ -24,7 +22,7 @@ set :sidekiq_role, :app
 set :sidekiq_pid, "#{current_path}/tmp/pids/sidekiq.pid"
 set :sidekiq_processes, 3
 
-
+require 'capistrano-unicorn'
 
 set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
