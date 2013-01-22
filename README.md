@@ -30,22 +30,20 @@ cd /path/to/vegastech_app && source .env
 To start the stream catcher, run:
 
 ```bash
-./script/stream
+source .env && ./script/stream
 ```
 
 If you need to pull in recent tweets, run:
 
 ```bash
-rake vegastech:tweet_catcher
+source .env && rake vegastech:tweet_catcher
 ```
 
 ## Deployment
 
 ```bash
-git push production master
+cap deploy
 ```
-
-**Note**: Don't kill the process, it will f things up.
 
 == License
 
