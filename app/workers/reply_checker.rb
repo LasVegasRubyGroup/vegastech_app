@@ -1,3 +1,5 @@
+require 'sidekiq'
+
 class ReplyChecker
   include Sidekiq::Worker
 

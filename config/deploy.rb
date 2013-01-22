@@ -1,9 +1,10 @@
 load 'deploy/assets'
-require 'bundler/capistrano'
+require 'capistrano-unicorn'
 
 set :application, 'bulletin_board'
 set :repository,  'git://github.com/LasVegasRubyGroup/vegastech_app.git'
 
+set(:bundle_cmd) { 'bundle' }
 set :bundle_flags, '--deployment --binstubs'
 set :scm, 'git'
 set :scm_verbose, true
@@ -14,6 +15,16 @@ set :deploy_via, 'remote_cache'
 set :deploy_to, "/home/#{user}/applications/#{application}"
 set :use_sudo, false
 set :init_script, "/etc/init.d/#{application}"
+
+
+set :sidekiq_cmd, "#{bundle_cmd} exec sidekiq"
+set :sidekiqctl_cmd, "#{bundle_cmd} exec sidekiqctl"
+set :sidekiq_timeout, 10
+set :sidekiq_role, :app
+set :sidekiq_pid, "#{current_path}/tmp/pids/sidekiq.pid"
+set :sidekiq_processes, 3
+
+
 
 set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
@@ -82,13 +93,15 @@ namespace :deploy do
     task :restart do
       sudo "service bulletin-board-stream stop; /bin/true"
       sudo "service bulletin-board-stream start"
+
     end
   end
 end
 
 require 'capistrano-unicorn'
 
-after 'deploy:restart', 'deploy:cleanup'
+after 'deploy:restart', 'unicorn:reload' # app IS NOT preloaded
+after 'deploy:restart', 'unicorn:restart'  # app preloaded
 after 'deploy:finalize_update', 'customs:symlink'
 after 'deploy:finalize_update', 'deploy:sidekiq:upstart_config'
 after 'deploy:finalize_update', 'deploy:stream:upstart_config'
