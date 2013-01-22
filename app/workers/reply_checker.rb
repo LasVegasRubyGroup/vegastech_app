@@ -2,7 +2,6 @@ require 'sidekiq'
 
 class ReplyChecker
   include Sidekiq::Worker
-  sidekiq_options :timeout => 10.minutes
 
   def perform(tweet_id, original_id)
     original_tweet = Post.find_by_twitter_id(original_id)
