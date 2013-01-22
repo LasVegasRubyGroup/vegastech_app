@@ -12,11 +12,11 @@ gem 'twitter-bootstrap-rails', '2.0.7'
 gem 'therubyracer', :platform => :ruby
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-# gem "sidekiq", "~> 2.6.4"
+gem "sidekiq", "~> 2.6.5"
 gem 'rest-client'
 gem 'sinatra', require: false
 gem 'slim'
-# gem 'turbolinks'
+gem 'turbolinks'
 gem 'capistrano-unicorn', git: 'git://github.com/sosedoff/capistrano-unicorn.git'
 
 group :assets do
