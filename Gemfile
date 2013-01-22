@@ -17,7 +17,7 @@ gem 'rest-client'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'turbolinks'
-gem 'capistrano-unicorn', git: 'git://github.com/sosedoff/capistrano-unicorn.git'
+gem 'capistrano-unicorn'#, git: 'git://github.com/sosedoff/capistrano-unicorn.git'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
