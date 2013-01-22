@@ -41,27 +41,27 @@ namespace :deploy do
     end
   end
 
-  # namespace :sidekiq do
-  #   desc 'Replace upstart config for sidekiq-workers'
-  #   task :upstart_config do
-  #     data = %Q{
-  #       start on runlevel [2345]
-  #       stop on runlevel [!2345]
-  #       respawn
+  namespace :sidekiq do
+    desc 'Replace upstart config for sidekiq-workers'
+    task :upstart_config do
+      data = %Q{
+        start on runlevel [2345]
+        stop on runlevel [!2345]
+        respawn
 
-  #       exec su - #{user} -c 'cd #{release_path}; export RAILS_ENV=#{rails_env};  bundle exec sidekiq -q default,1 -c 4 -pid #{release_path}/tmp/pids/sidekiq.pid >> #{release_path}/log/sidekiq.log 2>&1'
-  #     }
-  #     source_path = release_path + '/config/bulletin-board-sidekiq-workers.conf'
-  #     put data, source_path
-  #     sudo "cp -f #{source_path} /etc/init/bulletin-board-sidekiq-workers.conf"
-  #   end
+        exec su - #{user} -c 'cd #{release_path}; export RAILS_ENV=#{rails_env};  bundle exec sidekiq -q default,1 -c 4 -pid #{release_path}/tmp/pids/sidekiq.pid >> #{release_path}/log/sidekiq.log 2>&1'
+      }
+      source_path = release_path + '/config/bulletin-board-sidekiq-workers.conf'
+      put data, source_path
+      sudo "cp -f #{source_path} /etc/init/bulletin-board-sidekiq-workers.conf"
+    end
 
-  #   desc 'Restart sidekiq'
-  #   task :restart do
-  #     sudo "service bulletin-board-sidekiq-workers stop; /bin/true"
-  #     sudo "service bulletin-board-sidekiq-workers start"
-  #   end
-  # end
+    desc 'Restart sidekiq'
+    task :restart do
+      sudo "service bulletin-board-sidekiq-workers stop; /bin/true"
+      sudo "service bulletin-board-sidekiq-workers start"
+    end
+  end
 
   namespace :stream do
     desc 'Replace upstart config for stream'
@@ -90,7 +90,7 @@ require 'capistrano-unicorn'
 
 after 'deploy:restart', 'deploy:cleanup'
 after 'deploy:finalize_update', 'customs:symlink'
-# after 'deploy:finalize_update', 'deploy:sidekiq:upstart_config'
+after 'deploy:finalize_update', 'deploy:sidekiq:upstart_config'
 after 'deploy:finalize_update', 'deploy:stream:upstart_config'
 # after 'deploy:finalize_update', 'deploy:sidekiq:restart'
 after 'deploy:finalize_update', 'deploy:stream:restart'
