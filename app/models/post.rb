@@ -24,6 +24,14 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def self.weekly
+    where('tweeted_at >= ?', (Time.now - 1.week))
+  end
+
+  def self.within_past_month
+    where('tweeted_at >= ?', (Time.now - 1.month))
+  end
+
   def score
     (votes_count - 1) / (((Time.now - tweeted_at) / 3600) + 2) ** 1.8
   end

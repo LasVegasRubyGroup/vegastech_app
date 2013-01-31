@@ -9,6 +9,8 @@ class TweetScraper
           story.votes.create(twitter_handle: "@#{retweet.from_user}", value: 1, twitter_id: retweet.id.to_s)
           print 'r'
         end
+      rescue Twitter::Error::TooManyRequests
+        sleep 5
       rescue Exception => e
         print 'x'
       end
