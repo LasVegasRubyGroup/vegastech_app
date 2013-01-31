@@ -99,7 +99,6 @@ end
 require 'capistrano-unicorn'
 
 after 'deploy:restart', 'unicorn:reload' # app IS NOT preloaded
-after 'deploy:restart', 'unicorn:restart'  # app preloaded
 after 'deploy:finalize_update', 'customs:symlink'
 after 'deploy:finalize_update', 'deploy:sidekiq:upstart_config'
 after 'deploy:finalize_update', 'deploy:stream:upstart_config'
