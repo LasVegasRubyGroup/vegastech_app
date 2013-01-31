@@ -12,6 +12,10 @@ class Post < ActiveRecord::Base
     order(sorted_by)
   end
 
+  def self.sorted_by_most_votes
+    sorted('votes_count DESC')
+  end
+
   def self.ranked
     # If you know a better way, please let me know.
     case ActiveRecord::Base.connection.adapter_name
