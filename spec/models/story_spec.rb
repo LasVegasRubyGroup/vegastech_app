@@ -20,7 +20,7 @@ describe Story do
     it 'should truncate a tweet to 140 characters' do
       story.stub(:votes_count).and_return(5)
       story.stub(:content).and_return('x' * 200)
-      Twitter.should_receive(:update).with('RT @lvrug: ' + 'x' * 128 + '…')
+      Twitter.should_receive(:update).with('RT @lvrug: ' + 'x' * 125 + '...')
       story.run_callbacks(:save)
     end
 
