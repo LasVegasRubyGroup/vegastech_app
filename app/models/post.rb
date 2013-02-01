@@ -28,7 +28,7 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def self.weekly
+  def self.within_past_week
     where('tweeted_at >= ?', (Time.now - 1.week))
   end
 

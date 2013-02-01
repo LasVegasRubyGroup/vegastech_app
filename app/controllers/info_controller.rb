@@ -8,6 +8,6 @@ class InfoController < ApplicationController
   end
 
   def best_of_week
-    @stories = Story.weekly.sorted_by_most_votes.limit(25)
+    @stories = Story.within_past_week.sorted_by_most_votes.limit(25)
   end
 end
