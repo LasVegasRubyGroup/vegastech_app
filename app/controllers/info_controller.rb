@@ -1,6 +1,6 @@
 class InfoController < ApplicationController
   def recent
-    @stories = Story.sorted.page(params[:page]).limit(50)
+    @stories = Story.within_past_week.sorted.page(params[:page]).limit(50)
   end
 
   def users
