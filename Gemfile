@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 gem 'rake', '10.0.3'
 gem 'sqlite3'
 gem 'omniauth-twitter'
