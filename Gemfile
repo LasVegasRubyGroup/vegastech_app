@@ -35,6 +35,7 @@ def linux_only(require_as)
 end
 
 group :development do
+  gem 'capistrano'
   gem "rspec-rails"
   gem "guard-rspec"
   gem "guard-spork"
