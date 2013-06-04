@@ -28,9 +28,9 @@ set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 }
 
-role :web, '66.209.73.11'
-role :app, '66.209.73.11'
-role :db,  '66.209.73.11', primary: true
+role :web, 'news.lvrug.org'
+role :app, 'news.lvrug.org'
+role :db,  'news.lvrug.org', primary: true
 
 namespace :customs do
   task :symlink, roles: :app do
@@ -98,7 +98,7 @@ end
 
 require 'capistrano-unicorn'
 
-after 'deploy:restart', 'unicorn:reload' # app IS NOT preloaded
+after 'deploy:restart', 'unicorn:restart'  # app preloaded
 after 'deploy:finalize_update', 'customs:symlink'
 after 'deploy:finalize_update', 'deploy:sidekiq:upstart_config'
 after 'deploy:finalize_update', 'deploy:stream:upstart_config'
