@@ -22,6 +22,7 @@ set :sidekiq_role, :app
 set :sidekiq_pid, "#{current_path}/tmp/pids/sidekiq.pid"
 set :sidekiq_processes, 3
 
+require 'bundler/capistrano'
 require 'capistrano-unicorn'
 
 set :default_environment, {
