@@ -1,15 +1,18 @@
 class Story < Post
   has_many :comments
-  attr_accessible :twitter_id
+
   validates :twitter_id, :uniqueness => true
 
   after_create :queue_reply_checker
   after_save :self_love #:promote_tweet
 
+  attr_accessible :twitter_id, :twitter_profile_image_url
+
   def self.create_from_tweet(tweet)
     story = self.create(
       twitter_id: tweet.id.to_s,
       twitter_handle: "@#{tweet.user.screen_name}",
+      twitter_profile_image_url: tweet.user.profile_image_url,
       content: tweet.text,
       tweeted_at: tweet.created_at,
       from_user_name: tweet.user.name)
