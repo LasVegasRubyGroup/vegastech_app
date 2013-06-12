@@ -16,6 +16,7 @@ gem "sidekiq", "~> 2.6.5"
 gem 'rest-client'
 gem 'sinatra', require: false
 gem 'slim'
+gem 'capistrano-unicorn', :require => false
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -39,7 +40,6 @@ group :development do
   gem "guard-rspec"
   gem "guard-spork"
   gem "sqlite3"
-  gem 'capistrano-unicorn', :require => false
 
   # mac
   gem "rb-fsevent", require: darwin_only('rb-fsevent')
