@@ -1,3 +1,5 @@
+require 'dotenv/capistrano'
+
 load 'deploy/assets'
 
 set :application, 'bulletin_board'
