@@ -12,7 +12,7 @@ gem 'twitter-bootstrap-rails', '2.0.7'
 gem 'therubyracer', :platform => :ruby
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-gem "sidekiq", "~> 2.6.5"
+gem "sidekiq", '~> 2.12.3'
 gem 'rest-client'
 gem 'sinatra', require: false
 gem 'slim'
