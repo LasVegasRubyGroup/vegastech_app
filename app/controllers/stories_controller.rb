@@ -1,5 +1,6 @@
 class StoriesController < ApplicationController
   def index
+    raise ENV['TWITTER_CONSUMER_KEY'].inspect
     @stories = Story.within_past_month.ranked.page(params[:page]).limit(50)
   end
 
