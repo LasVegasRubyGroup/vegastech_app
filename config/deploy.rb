@@ -107,3 +107,6 @@ after 'deploy:finalize_update', 'deploy:sidekiq:upstart_config'
 after 'deploy:finalize_update', 'deploy:stream:upstart_config'
 after 'deploy:finalize_update', 'deploy:sidekiq:restart'
 after 'deploy:finalize_update', 'deploy:stream:restart'
+
+        require './config/boot'
+        require 'airbrake/capistrano'

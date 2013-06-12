@@ -18,6 +18,7 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'capistrano-unicorn', :require => false
 gem 'dotenv-rails', '0.8.0'
+gem 'airbrake'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
