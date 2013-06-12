@@ -16,7 +16,6 @@ gem "sidekiq", "~> 2.6.5"
 gem 'rest-client'
 gem 'sinatra', require: false
 gem 'slim'
-gem 'turbolinks'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
