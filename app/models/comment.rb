@@ -1,7 +1,7 @@
 class Comment < Post
   belongs_to :story
 
-  after_create :queue_reply_checker
+  # after_create :queue_reply_checker
 
   attr_accessible :post_to_twitter
   attr_accessor :post_to_twitter

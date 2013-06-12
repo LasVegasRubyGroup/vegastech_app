@@ -11,7 +11,7 @@ class Vote < ActiveRecord::Base
   attr_accessible :twitter_handle, :value, :twitter_id
   attr_accessor :twitter_id
 
-  after_create :queue_reply_checker
+  # after_create :queue_reply_checker
 
   def story
     post
