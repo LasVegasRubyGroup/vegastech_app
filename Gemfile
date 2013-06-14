@@ -12,12 +12,13 @@ gem 'twitter-bootstrap-rails', '2.0.7'
 gem 'therubyracer', :platform => :ruby
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-gem "sidekiq", "~> 2.6.5"
+gem "sidekiq", '~> 2.12.3'
 gem 'rest-client'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'capistrano-unicorn', :require => false
 gem 'dotenv-rails', '0.8.0'
+gem 'airbrake'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
