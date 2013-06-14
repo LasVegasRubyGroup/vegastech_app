@@ -23,6 +23,8 @@ TweetStream.configure do |config|
   config.auth_method        = :oauth
 end
 
+puts "Tracking ##{ENV['TRACK_HASHTAG']}"
+
 TweetStream::Client.new.on_error do |message|
   puts "Error from stream #{message}"
 end.track("##{ENV['TRACK_HASHTAG']}") do |tweet|

@@ -83,7 +83,7 @@ namespace :deploy do
         stop on runlevel [!2345]
         respawn
 
-        exec su - #{user} -c 'cd #{release_path}; source ~/.env; export RAILS_ENV=#{rails_env}; export PORT=5100; ./script/stream >> #{release_path}/log/stream-1.log 2>&1'
+        exec su - #{user} -c 'cd #{release_path}; source .env; export RAILS_ENV=#{rails_env}; export PORT=5100; ./script/stream >> #{release_path}/log/stream-1.log 2>&1'
       }
       source_path = release_path + '/config/bulletin-board-stream.conf'
       put data, source_path
