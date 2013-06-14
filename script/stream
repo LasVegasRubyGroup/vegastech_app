@@ -3,6 +3,8 @@
 require File.dirname(__FILE__) + '/../config/environment'
 
 def save_tweet(tweet)
+  puts tweet.inspect
+
   if retweet_of = tweet[:retweeted_status]
     story = Story.find_or_create_by_tweet(retweet_of)
     story.votes.create(twitter_handle: "@#{tweet.user.screen_name}", value: 1)
