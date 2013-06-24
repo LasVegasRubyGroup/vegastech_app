@@ -17,15 +17,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.ranked
-    # If you know a better way, please let me know.
-    case ActiveRecord::Base.connection.adapter_name
-    when 'SQLite'
-      # Nasty because SQLite does not have a ^ operator.
-      age_calculation = "((strftime('%s','now') - strftime('%s', tweeted_at)) / 60 / 60)"
-      order("(votes_count - 1) / (#{age_calculation} + 2) * #{age_calculation} * (#{age_calculation} * 1.8) DESC, tweeted_at DESC")
-    when 'Mysql2'
-      order('((votes_count - 1) / POW((((UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(tweeted_at)) / 3600) + 2), 1.8)) DESC, tweeted_at DESC')
-    end
+    order("((votes_count - 1) / POW((((DATE_PART('epoch', NOW()) - DATE_PART('epoch', tweeted_at)) / 3600) + 2), 1.8)) DESC, tweeted_at DESC")
   end
 
   def self.within_past_week
