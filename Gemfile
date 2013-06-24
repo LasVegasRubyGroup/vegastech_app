@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
+
 gem 'rails', '3.2.12'
 gem 'rake', '10.0.3'
-gem 'sqlite3'
 gem 'omniauth-twitter'
 gem 'twitter'
 gem 'twitter-text'
@@ -19,6 +20,7 @@ gem 'slim'
 gem 'capistrano-unicorn', :require => false
 gem 'dotenv-rails', '0.8.0'
 gem 'airbrake'
+gem 'pg'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -42,6 +44,7 @@ group :development do
   gem "guard-rspec"
   gem "guard-spork"
   gem "sqlite3"
+  gem 'sqlite3'
 
   # mac
   gem "rb-fsevent", require: darwin_only('rb-fsevent')
