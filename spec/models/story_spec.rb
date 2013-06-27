@@ -1,31 +1,30 @@
 require 'spec_helper'
 
 describe Story do
+  it { should have_many(:tags).through(:taggings) }
 
-  context "promote_tweet" do
-    let(:story) { Story.create(twitter_handle: '@lvrug', content: 'polluting the twitter stream' )}
+  # context "promote_tweet" do
+  #   let(:story) { Story.create(twitter_handle: '@lvrug', content: 'polluting the twitter stream' )}
 
-    it "should promote a tweet when the votes reach 5" do
-      story.stub(:votes_count).and_return(5)
-      Twitter.should_receive(:update)
-      story.run_callbacks(:save)
-    end
+  #   it "should promote a tweet when the votes reach 5" do
+  #     story.stub(:votes_count).and_return(5)
+  #     Twitter.should_receive(:update)
+  #     story.run_callbacks(:save)
+  #   end
 
-    it "should not promote a tweet when the vote count is 4" do
-      story.stub(:votes_count).and_return(4)
-      Twitter.should_not_receive(:update)
-      story.run_callbacks(:save)
-    end
+  #   it "should not promote a tweet when the vote count is 4" do
+  #     story.stub(:votes_count).and_return(4)
+  #     Twitter.should_not_receive(:update)
+  #     story.run_callbacks(:save)
+  #   end
 
-    it 'should truncate a tweet to 140 characters' do
-      story.stub(:votes_count).and_return(5)
-      story.stub(:content).and_return('x' * 200)
-      Twitter.should_receive(:update).with('RT @lvrug: ' + 'x' * 125 + '...')
-      story.run_callbacks(:save)
-    end
-
-
-  end
+  #   it 'should truncate a tweet to 140 characters' do
+  #     story.stub(:votes_count).and_return(5)
+  #     story.stub(:content).and_return('x' * 200)
+  #     Twitter.should_receive(:update).with('RT @lvrug: ' + 'x' * 125 + '...')
+  #     story.run_callbacks(:save)
+  #   end
+  # end
 
 
   context "when performing validations" do

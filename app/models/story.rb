@@ -1,12 +1,15 @@
 class Story < Post
   has_many :comments
+  has_many :taggings
+  has_many :tags, through: :taggings
+
 
   validates :twitter_id, :uniqueness => true
 
   # after_create :queue_reply_checker
   after_save :self_love #:promote_tweet
 
-  attr_accessible :twitter_id, :twitter_profile_image_url
+  attr_accessible :twitter_id, :twitter_profile_image_url, :tag_ids
 
   def self.create_from_tweet(tweet)
     story = self.create(

@@ -18,6 +18,10 @@
           <span class="comments">
             <%= link_to("#{story.comments.size.to_i} Comments", story_path(story)) %>
           </span>
+          <span class="comments">
+            <%= link_to("Add Tags", edit_story_path(story)) %>
+          </span>
+
         </div>
       </div>
 

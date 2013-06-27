@@ -13,7 +13,7 @@ gem 'twitter-bootstrap-rails', '2.0.7'
 gem 'therubyracer', :platform => :ruby
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-gem "sidekiq", '~> 2.12.3'
+gem 'sidekiq', '~> 2.12.3'
 gem 'rest-client'
 gem 'sinatra', require: false
 gem 'slim'
@@ -21,6 +21,8 @@ gem 'capistrano-unicorn', :require => false
 gem 'dotenv-rails', '0.8.0'
 gem 'airbrake'
 gem 'pg'
+gem 'unicorn'
+gem 'simple_form'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -39,16 +41,16 @@ def linux_only(require_as)
 end
 
 group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'capistrano'
-  gem "rspec-rails"
-  gem "guard-rspec"
-  gem "guard-spork"
-  gem "sqlite3"
-  gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'guard-spork'
 
   # mac
-  gem "rb-fsevent", require: darwin_only('rb-fsevent')
-  gem "growl", require: darwin_only('growl')
+  gem 'rb-fsevent', require: darwin_only('rb-fsevent')
+  gem 'growl', require: darwin_only('growl')
 
   # linux
   gem 'rb-inotify', require: linux_only('rb-inotify')
@@ -58,13 +60,10 @@ group :development do
 end
 
 group :test do
-  gem "rspec-rails"
-  gem "factory_girl_rails"
-  gem "database_cleaner"
-  gem "capybara"
+  gem 'shoulda-matchers'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'capybara'
 end
 
-group :production do
-  gem "mysql2"
-  gem "unicorn"
-end

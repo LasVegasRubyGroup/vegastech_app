@@ -1,0 +1,8 @@
+=simple_form_for(@story, :html => { :class => 'form-horizontal' }) do |f|
+
+  .form-inputs
+    = f.association :tags, collection: Tag.order('name DESC'), :as => :check_boxes
+
+
+  .form-actions
+    = f.submit "Update Tags", class: 'btn-cta'
