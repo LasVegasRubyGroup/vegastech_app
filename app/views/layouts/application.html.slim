@@ -1,0 +1,121 @@
+doctype html
+html
+  head
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title= content_for?(:title) ? yield(:title) : "#VegasTech Bulletin Board" 
+    meta name="author" content="#VegasTech Bulletin Board"
+    = stylesheet_link_tag "application", :media => "all"
+ 
+    link rel='apple-touch-icon-precomposed' href="#{asset_path('apple-touch-icon-57x57.png')}"
+    link rel='apple-touch-icon-precomposed' sizes="72x72"  href="#{asset_path('apple-touch-icon-72x72.png') }"
+    link rel='apple-touch-icon-precomposed' sizes="114x114" href="#{asset_path('apple-touch-icon-114x114.png') }"
+    link rel="icon" type="image/png" href="#{asset_path('apple-touch-icon-114x114.png') }"
+
+    link(href='https://fonts.googleapis.com/css?family=Lato:100,200,300,400,700' rel='stylesheet' type='text/css')
+
+    =csrf_meta_tags
+    
+    /[if lt IE 9]
+      script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"
+
+    = stylesheet_link_tag('application', media: 'all')
+
+  body
+    .container
+      .row
+        .offset1.span10.offset1
+          center
+            h1= link_to('#VegasTech Bulletin Board', root_url)
+
+          .navbar.navbar-fixed-top
+            .navbar-inner
+              .container
+                a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse"
+                  span class="icon-bar"
+                  span class="icon-bar"
+                  span class="icon-bar"
+
+                a class="brand visible-phone" href="/">#VegasTech BB
+
+                .container.nav-collapse
+                  ul.nav.pull-right
+                    li= link_to "Current", root_url  
+                    li= link_to "Recent", recent_path  
+                    li= link_to "Events", tag_path('1')  
+                    li= link_to "Q&A", tag_path('2')  
+                    li= link_to "Advice", tag_path('3')  
+                    / li= link_to "Photos", photos_path
+                    li= link_to "Best of week", best_of_week_path  
+                    li= link_to "Jobs", "http://hirevegastech.com", target: 'new'  
+                    / li.dropdown.visible-desktop
+                    /   = link_to "Calendars", '#', :class => 'dropdown-toggle', "data-toggle" => "dropdown"  
+                    /   ul.dropdown-menu
+                    /     li= link_to 'VegasTech.com Events Calendar', 'http://vegastech.com/events/', target: 'new'  
+                    /     li= link_to 'TBAN Events Calendar', 'https://www.tban.com/events/', target: 'new'          
+                    /     li= link_to 'Work In Progress Calendar', 'http://www.workinprogress.lv/event-calendar/', target: 'new'  
+                    li= link_to "Whining", tag_path('4')  
+
+                    li.dropdown.visible-desktop
+                      = link_to "Coworking <b class='caret'></b>".html_safe, '#', :class => 'dropdown-toggle', "data-toggle" => "dropdown"  
+                      ul.dropdown-menu
+                        li= link_to 'CoBiz Coworking', 'http://cobizcoworking.com/', target: 'new'  
+                        li= link_to 'The InNEVation Center', 'http://innevation.com/', target: 'new'  
+                        li= link_to 'Work In Progress', 'http://workinprogress.lv/', target: 'new'  
+
+                    li.dropdown.visible-desktop
+                      = link_to("RSS <b class='caret'></b>".html_safe, '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown')  
+                      ul.dropdown-menu
+                        li= link_to('Reaching 5 Points', rss_path(5), target: 'new') 
+                        li= link_to('Reaching 10 Points', rss_path(10), target: 'new') 
+                        li= link_to('Reaching 20 Points', rss_path(20), target: 'new') 
+
+                    li.hidden-desktop= link_to 'VegasTech.com Events Calendar', 'http://vegastech.com/events/', target: 'new'  
+                    li.hidden-desktop= link_to 'Work In Progress', 'http://workinprogress.lv/events/', target: 'new'  
+                    li.hidden-desktop= link_to 'TBAN Events Calendar', 'http://www.tban.us/calendar/', target: 'new'  
+
+                    - if logged_in?
+
+                      li.dropdown.visible-desktop
+                        = link_to "<i class='icon-user icon-white'></i> My Account <b class='caret'></b>".html_safe, '#', :class => 'dropdown-toggle', "data-toggle" => "dropdown" 
+                        ul.dropdown-menu
+
+                          li= link_to(current_user.twitter_handle, '#') 
+                          li.divider
+                          li= link_to "Sign out", "/sessions/destroy", method: 'delete'  
+                    - else 
+                      li= link_to(image_tag('bird_black_16_0.png', class: 'black_bird') + "Sign in", "/auth/twitter")  
+ 
+    .container
+      .content
+        .row
+           .offset1.span10.offset1
+            - unless flash[:notice].blank? 
+              .alert.alert-success.fade.in
+                a class="close" data-dismiss="alert" href="&times;"
+                  |×
+                h3= flash[:notice]
+
+            - if logged_in? 
+              .alert.alert-info.hidden-desktop
+                center
+                  = "Currently signed in as #{current_user.twitter_handle}" 
+
+            = yield 
+
+    .container
+      .row
+        .span12
+          .footer
+            p.logos
+              = link_to(image_tag(asset_path('lvrug_logo.png')), 'http://lvrug.org', target: '_blank') 
+
+            p &copy; #{Date.today.year}  - A Project by #{link_to('The Las Vegas Ruby User Group', 'http://lvrug.org', target: '_blank')} (  #{link_to('@LVRUG', 'http://twitter.com/lvrug', target: '_blank') }). Hosted at the #{link_to('Switch SuperNAP', 'http://www.switchlv.com', target: 'blank')}
+
+
+    / Javascripts
+    / ================================================== 
+    / Placed at the end of the document so the pages load faster 
+    = javascript_include_tag('application') 
+    = render 'shared/google_analytics'
+
+

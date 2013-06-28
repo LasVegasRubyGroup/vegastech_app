@@ -1,0 +1,61 @@
+.story data-id="#{story.id}" data-score="#{story.score}"
+  .row
+    .content
+      = image_tag(asset_path('pin.png'), class: 'left-pin visible-desktop') 
+      = image_tag(asset_path('pin.png'), class: 'right-pin visible-desktop') 
+      = image_tag(asset_path('pin.png'), class: 'center-pin hidden-desktop') 
+
+      .span7
+        = auto_link(story.content, url_target: '_blank').html_safe 
+        .metadata
+          a href="= link_from_handle(story.twitter_handle) " target="_blank"
+            image_tag story.twitter_profile_image_url
+          
+          span.handle= link_to(story.twitter_handle, link_from_handle(story.twitter_handle), target: '_blank')
+          span.age
+            = link_to("#{time_ago_in_words(story.tweeted_at)} ago".html_safe, link_from_story(story), target: 'blank') 
+          
+          span.comments
+            = link_to("#{story.comments.size.to_i} Comments", story_path(story)) 
+          
+          - if current_user && current_user.admin? 
+            span.comments
+              = link_to("Add Tags", edit_story_path(story)) 
+
+      .span2
+        - if current_user && !current_user.voted_on?(story) 
+          = link_to("<i class='icon-thumbs-up icon-white'></i>".html_safe, "#retweet-modal-#{story.twitter_id}", 'data-toggle' => 'modal', class: 'vote') 
+        - elsif current_user && current_user.voted_on?(story) 
+          .vote 
+            i.icon-ok.icon-white
+        - else current_user 
+          = link_to("<i class='icon-thumbs-up icon-white'></i>".html_safe, '/auth/twitter', class: 'vote') 
+
+        .rank #{story.vote_count} points
+        .score #{story.score.to_f}
+
+      br.clear
+
+.modal.hide id={'retweet-modal-' + story.twitter_id}
+  .modal-header
+    button type="button" class="close" data-dismiss="modal"
+      | ×
+    h3 Would you like to retweet this as well?
+  
+  .modal-body
+    .story
+      .content
+        = auto_link(story.content, url_target: '_blank').html_safe 
+        .metadata
+          a href="#{link_from_handle(story.twitter_handle)}" target="_blank"
+            = image_tag(story.twitter_profile_image_url)
+          span.handle
+            =link_to(story.twitter_handle, link_from_handle(story.twitter_handle), target: '_blank') 
+          span.age
+            = link_to("#{time_ago_in_words(story.tweeted_at)} ago".html_safe, link_from_story(story), target: 'blank') 
+  
+  .modal-footer
+    = link_to('Just Vote', story_votes_path(story), 'data-dismiss' => 'modal', class: 'btn', method: 'post', remote: true) 
+    = link_to("Vote &amp; Retweet <i class = 'icon-retweet'></i>".html_safe, story_votes_path(story, retweet: 1), 'data-dismiss' => 'modal', class: 'btn btn-inverse', method: 'post', remote: true) 
+  
+

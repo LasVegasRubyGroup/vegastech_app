@@ -1,5 +1,5 @@
 @import "twitter/bootstrap/bootstrap";
-body { padding-top: 10px; }
+body { padding-top: 80px; }
 
 @import "twitter/bootstrap/responsive";
 
@@ -15,10 +15,17 @@ body { padding-top: 10px; }
 @fontAwesomeSvgPath: asset-url("fontawesome-webfont.svg#fontawesomeregular");
 @import "fontawesome/font-awesome";
 
-@yellowMustard: #c4ac31;
+@yellowMustard: #df9b53;
+@vegasRed: #db3c21;
+@vegasBlue: #407fd3;
+@lightGray: #f9f9f9;
 
-@linkColor: #b13131;
-@navbarBackground: fade(white, 0%);
-@navbarBackgroundHighlight: fade(white, 0%);
+@linkColor: @vegasRed;
+
+//nav bar
+@navbarLinkColor: @lightGray;
+@navbarBackground: fade(@vegasBlue, 80%);
+@navbarBackgroundHighlight: fade(@vegasBlue, 80%);
 @dropdownLinkBackgroundHover: @yellowMustard;
 @dropdownLinkColorHover: @white;
+@navbarHeight: 60px;
