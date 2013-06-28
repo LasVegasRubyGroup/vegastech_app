@@ -21,6 +21,8 @@
     <div class="container">
       <div class="row">
         <div class="offset1 span10 offset1">
+          <h1><%= link_to('#VegasTech Bulletin Board', root_url) %></h1>
+
           <div class="navbar">
             <div class="navbar-inner">
               <div class="container">
@@ -30,13 +32,16 @@
                   <span class="icon-bar"></span>
                 </a>
 
-                <a class="brand hidden-phone" href="/">#VegasTech Bulletin Board</a>
                 <a class="brand visible-phone" href="/">#VegasTech BB</a>
 
                 <div class="container nav-collapse">
                   <ul class="nav">
-                    <li><%= link_to "Recent", recent_path  %></li>
+                    <li><%= link_to "Events", tag_path('1')  %></li>
+                    <li><%= link_to "Questions", tag_path('2')  %></li>
+                    <li><%= link_to "Advice", tag_path('3')  %></li>
+                    <li><%= link_to "Whining", tag_path('4')  %></li>
                     <!-- <li><%= link_to "Photos", photos_path  %></li> -->
+                    <li><%= link_to "Recent", recent_path  %></li>
                     <li><%= link_to "Best of week", best_of_week_path  %></li>
                     <li><%= link_to "Jobs", "http://hirevegastech.com", target: 'new'  %></li>
                     <li class='dropdown visible-desktop'><%= link_to "Calendars", '#', :class => 'dropdown-toggle', "data-toggle" => "dropdown"  %>

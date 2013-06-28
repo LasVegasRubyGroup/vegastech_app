@@ -9,7 +9,7 @@ class Story < Post
   # after_create :queue_reply_checker
   after_save :self_love #:promote_tweet
 
-  attr_accessible :twitter_id, :twitter_profile_image_url, :tag_ids
+  attr_accessible :twitter_id, :twitter_profile_image_url, :tag_ids, :start_time
 
   def self.create_from_tweet(tweet)
     story = self.create(

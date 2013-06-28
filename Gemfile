@@ -9,8 +9,8 @@ gem 'twitter'
 gem 'twitter-text'
 gem 'tweetstream', '~> 1.0'
 gem 'foreman'
-gem 'twitter-bootstrap-rails', '2.0.7'
-gem 'therubyracer', :platform => :ruby
+gem 'twitter-bootstrap-rails'
+gem 'therubyracer'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'sidekiq', '~> 2.12.3'
@@ -23,6 +23,8 @@ gem 'airbrake'
 gem 'pg'
 gem 'unicorn'
 gem 'simple_form'
+gem 'bootstrap-datetimepicker-rails'
+gem "less-rails"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

@@ -18,10 +18,11 @@
           <span class="comments">
             <%= link_to("#{story.comments.size.to_i} Comments", story_path(story)) %>
           </span>
-          <span class="comments">
-            <%= link_to("Add Tags", edit_story_path(story)) %>
-          </span>
-
+          <% if current_user && current_user.admin? %>
+            <span class="comments">
+              <%= link_to("Add Tags", edit_story_path(story)) %>
+            </span>
+          <% end %>
         </div>
       </div>
 
@@ -53,7 +54,7 @@
       <div class="content">
         <%= auto_link(story.content, url_target: '_blank').html_safe %>
         <div class="metadata">
-          <a href="<%= link_from_handle(story.twitter_handle) %>" target="_blank"><img src="https://api.twitter.com/1/users/profile_image?screen_name=<%= story.twitter_handle.gsub(/^@/, '') %>&size=normal" height="48" width="48"></a>
+          <a href="<%= link_from_handle(story.twitter_handle) %>" target="_blank"><img src="<%= story.twitter_profile_image_url %>"></a>
           <span class="handle"><%= link_to(story.twitter_handle, link_from_handle(story.twitter_handle), target: '_blank') %></span>
           <span class="age">
             <%= link_to("#{time_ago_in_words(story.tweeted_at)} ago".html_safe, link_from_story(story), target: 'blank') %>
