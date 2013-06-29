@@ -3,13 +3,18 @@ class Story < Post
   has_many :taggings
   has_many :tags, through: :taggings
 
-
   validates :twitter_id, :uniqueness => true
 
   # after_create :queue_reply_checker
   after_save :self_love #:promote_tweet
 
   attr_accessible :twitter_id, :twitter_profile_image_url, :tag_ids, :start_time
+
+  def self.events_in_the_furture
+    # where('start_time IS NOT NULL AND start_time > ?', Time.zone.now )
+    where('start_time > ?', Time.zone.now )
+
+  end
 
   def self.create_from_tweet(tweet)
     story = self.create(

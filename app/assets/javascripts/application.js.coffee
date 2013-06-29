@@ -12,9 +12,8 @@
 #
 # = require jquery
 # = require jquery_ujs
-# = require twitter/bootstrap
 # = require bootstrap-datetimepicker
-# = require_tree .
+# = require bootstrap
 
 $('#datetimepicker').datetimepicker({
     language: 'en',

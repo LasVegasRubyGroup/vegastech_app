@@ -14,6 +14,7 @@ VegastechApp::Application.routes.draw do
   get 'sessions/create'
 
   resources :tags, only: :show
+  resources :events, only: :index
 
   resources :posts do
     resources :votes

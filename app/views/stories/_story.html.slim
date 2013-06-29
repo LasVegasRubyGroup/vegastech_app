@@ -9,7 +9,7 @@
         = auto_link(story.content, url_target: '_blank').html_safe 
         .metadata
           a href="= link_from_handle(story.twitter_handle) " target="_blank"
-            image_tag story.twitter_profile_image_url
+            = image_tag(story.twitter_profile_image_url)
           
           span.handle= link_to(story.twitter_handle, link_from_handle(story.twitter_handle), target: '_blank')
           span.age
@@ -36,7 +36,7 @@
 
       br.clear
 
-.modal.hide id={'retweet-modal-' + story.twitter_id}
+.modal.hide id="#{'retweet-modal-' + story.twitter_id}"
   .modal-header
     button type="button" class="close" data-dismiss="modal"
       | ×

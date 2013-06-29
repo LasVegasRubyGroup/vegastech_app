@@ -1,0 +1,9 @@
+h1 Upcoming Events
+
+- @events_per_day.each do |date, events_for_day|
+
+  .date-time-header
+    h3= l date, format: :day_of_week
+    .event
+      - events_for_day.each do |event|
+        = render partial: 'stories/story', :locals => { :story => event } 

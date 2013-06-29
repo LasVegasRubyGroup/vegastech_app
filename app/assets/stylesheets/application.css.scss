@@ -9,19 +9,23 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
 
- *= require bootstrap_and_overrides
- *= require stories
- *= require bootstrap-datetimepicker
  *= require_self
 */
+@import 'colors';
 
-@lightYellow: #fdfcf7;
-@darkYellow: darken(@lightYellow, 50%);
-@lightGray: #f9f9f9;
+@import 'compass';
+@import "bootstrap_and_overrides";
+
+@import "bootstrap";
+body { padding-top: 80px; }
+@import "bootstrap-responsive";
+@import 'font-awesome';
+@import 'stories';
+@import 'bootstrap-datetimepicker';
 
 body {
   // background: url(/assets/cork.png) top left;
-  background: @lightGray;
+  background: $lightGray;
 }
 
 .score{
@@ -47,13 +51,17 @@ body {
 .navbar-inner {
   box-shadow: none;
 
-  ul.nav li a {
-    text-shadow: none;
+  // ul.nav li a {
+  //   text-shadow: none;
 
-    &:hover {
-      color: darken(@lightYellow, 90%);
-    }
-  }
+  //   &:hover {
+  //     color: darken(@lightYellow, 90%);
+  //   }
+  // }
+}
+
+i.icon-twitter{
+  font-size: 20px;
 }
 
 .pagination {
@@ -71,7 +79,7 @@ body {
 
   p {
     font-size: 10px;
-    color: darken(@lightYellow, 90%);
+    color: darken($lightYellow, 90%);
 
     img {
       margin: 0 10px;
