@@ -33,6 +33,20 @@ body {
 h1{
   font-weight: 200;
   font-size: 60px;
+
+  a{
+    @include transition-property(color);
+    @include transition-duration(1250ms);
+  }
+  
+  &:hover a{
+    color: $lightYellow;
+    @include transition-property(color);
+    @include transition-duration(1250ms);
+
+
+    text-decoration: none;
+  }
 }
 
 h2{
