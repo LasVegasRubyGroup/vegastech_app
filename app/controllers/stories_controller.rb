@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-  before_filter :ensure_admin, except: :index
+  before_filter :ensure_admin, only: [:edit, :update]
 
   def index
     @stories = Story.within_past_month.ranked.page(params[:page]).limit(50)

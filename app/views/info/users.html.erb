@@ -5,8 +5,8 @@
   <% @users.each do |user| %>
     <li class="span2 head_shot">
       <div class="thumbnail ">
-        <%= image_tag "https://api.twitter.com/1/users/profile_image?screen_name=#{ user.twitter_handle.gsub(/^@/, '')}&size=original" %>
-        <h3><%= user.twitter_handle %></h3>
+        <%= image_tag(user.twitter_profile_image_url) %>
+        <p><%= user.twitter_handle %></p>
       </div>
     </li>
   <% end %>

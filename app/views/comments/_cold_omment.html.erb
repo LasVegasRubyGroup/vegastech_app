@@ -1,11 +1,9 @@
 <div class="story" data-id="<%= story.id %>" data-score="<%= story.score %>">
   <div class="row">
     <div class="content">
-      <%= image_tag(asset_path('pin.png'), class: 'left-pin visible-desktop') %>
-      <%= image_tag(asset_path('pin.png'), class: 'right-pin visible-desktop') %>
-      <%= image_tag(asset_path('pin.png'), class: 'center-pin hidden-desktop') %>
 
-      <div class="span7">
+
+      <div class="offset1 span7">
         <%= auto_link(story.content, url_target: '_blank').html_safe %>
 
         <div class="metadata">
@@ -25,7 +23,7 @@
         </div>
       </div>
 
-      <div class="span2">
+      <div class="span3">
         <% if current_user && !current_user.voted_on?(story) %>
           <%= link_to("<i class='icon-thumbs-up icon-white'></i>".html_safe, "#retweet-modal-#{story.twitter_id}", 'data-toggle' => 'modal', class: 'vote') %>
         <% elsif current_user && current_user.voted_on?(story) %>

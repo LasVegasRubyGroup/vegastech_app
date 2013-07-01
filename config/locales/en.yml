@@ -65,5 +65,7 @@ en:
       short: "%b %e, %G - %l:%M %p %Z"
       long: "%B %d, %Y %l:%M %p %Z"
       short_date: "%b %d, %Y"
+      just_time: "%l:%M %p %Z"
+
     am: "am"
     pm: "pm"

@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
     user = User.find_by_uid(auth_hash['uid'])
     unless user
       user = User.create(
+        twitter_profile_image_url: auth_hash.extra.raw_info.profile_image_url,
         twitter_handle: twitter_handle,
         uid: auth_hash['uid'],
         auth_credentials: auth_hash.credentials.token + ':' + auth_hash.credentials.secret)

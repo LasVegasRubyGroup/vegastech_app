@@ -2,22 +2,47 @@
 
 $linkColor: $vegasRed;
 
+//borders
+$baseBorderRadius: 0px;
+$borderRadiusLarge: 0px;
+$borderRadiusSmall: 0px;
+$inputBorderRadius: 0px;
+
 //nav bar
 $navbarLinkColor: $lightGray;
 $navbarLinkBackgroundActive: none;
+$navbarLinkColorActive: $lightYellow;
 $navbarBackground: transparentize($vegasBlue, 0.2);
 $navbarBackgroundHighlight: transparentize($vegasBlue, 0.2);
-$dropdownLinkBackgroundHover: $yellowMustard;
-$navbarLinkColorHover: white;
+$dropdownLinkBackgroundHover: $lightYellow;
+$navbarLinkColorHover: $lightYellow;
 $dropdownLinkColorHover: white;
 $navbarHeight: 60px;
+// $navbarBrandColor: $lightYellow;
 
 .nav {
 
  li a {
   font-size: 18px;
-  // font-weight: 400;
   text-transform: uppercase;
-  // margin-top: 3px;
+  @include transition-duration(500ms);
+
   }
+
+  ul.dropdown-menu{
+    @include border-radius(0px);
+  }
+}
+
+
+.dropdown-menu {
+  @include border-radius(0px);
+
+  li a{
+    @include transition-duration(0s);
+  }
+}
+
+.alert{
+  margin-top: 20px;
 }

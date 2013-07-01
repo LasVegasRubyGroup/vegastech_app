@@ -5,30 +5,29 @@
       / = image_tag(asset_path('pin.png'), class: 'right-pin visible-desktop') 
       / = image_tag(asset_path('pin.png'), class: 'center-pin hidden-desktop') 
 
-      .span9
-        .tweet-words
-          = auto_link(story.content, url_target: '_blank').html_safe 
-        .metadata
+      .offset1.span8
+        = auto_link(story.content, url_target: '_blank').html_safe 
 
+        .metadata
           a href="= link_from_handle(story.twitter_handle) " target="_blank"
             = image_tag(story.twitter_profile_image_url)
-          
+
           span.handle= link_to(story.twitter_handle, link_from_handle(story.twitter_handle), target: '_blank')
 
-          .pull-right
-            span.comments
-              - if story.comments.size == 0
-                = link_to("Start Discussion", story_path(story))
-              - else
-                = link_to("#{pluralize(story.comments.size, 'Comment')}", story_path(story)) 
+          / .pull-right
+          /   span.comments
+          /     - if story.comments.size == 0
+          /       = link_to("Start Discussion", story_path(story))
+          /     - else
+          /       = link_to("#{pluralize(story.comments.size, 'Comment')}", story_path(story)) 
             
-            - if current_user && current_user.admin? 
-              span.comments
-                = link_to("Add Tags", edit_story_path(story), class: 'btn btn-mini') 
+          /   - if current_user && current_user.admin? 
+          /     span.comments
+          /       = link_to("Add Tags", edit_story_path(story), class: 'btn btn-mini') 
 
           span.age
-            = link_to("#{time_ago_in_words(story.tweeted_at)} ago".html_safe, link_from_story(story), target: 'blank') 
-          
+            = "#{time_ago_in_words(story.created_at)} ago"
+
           .visible-phone
             .rank= pluralize( story.vote_count, 'Point')
             - if current_user && !current_user.voted_on?(story) 
@@ -38,8 +37,6 @@
                 i.icon-circle-arrow-up
             - else current_user 
               = link_to("<i class='icon-circle-arrow-up'></i>".html_safe, '/auth/twitter', class: 'vote') 
-
-
 
       .hidden-phone
         .span3.vote_actions
@@ -57,7 +54,7 @@
 
       br.clear
 
-.modal.hide id="#{'retweet-modal-' + story.twitter_id}"
+.modal.hide id="#{'retweet-modal-' + story.id.to_s}"
   .modal-header
     button type="button" class="close" data-dismiss="modal"
       | ×
@@ -67,16 +64,15 @@
     .story
       .content
         = auto_link(story.content, url_target: '_blank').html_safe 
-        .metadata
-          a href="#{link_from_handle(story.twitter_handle)}" target="_blank"
-            = image_tag(story.twitter_profile_image_url)
-          span.handle
-            =link_to(story.twitter_handle, link_from_handle(story.twitter_handle), target: '_blank') 
-          span.age
-            = link_to("#{time_ago_in_words(story.tweeted_at)} ago".html_safe, link_from_story(story), target: 'blank') 
+        / .metadata
+        /   a href="#{link_from_handle(story.twitter_handle)}" target="_blank"
+        /     = image_tag(story.twitter_profile_image_url)
+        /   span.handle
+        /     =link_to(story.twitter_handle, link_from_handle(story.twitter_handle), target: '_blank') 
+        /   span.age
+        /     = link_to("#{time_ago_in_words(story.tweeted_at)} ago".html_safe, link_from_story(story), target: 'blank') 
   
   .modal-footer
     = link_to('Just Vote', story_votes_path(story), 'data-dismiss' => 'modal', class: 'btn', method: 'post', remote: true) 
     = link_to("Vote &amp; Retweet <i class = 'icon-retweet'></i>".html_safe, story_votes_path(story, retweet: 1), 'data-dismiss' => 'modal', class: 'btn btn-inverse', method: 'post', remote: true) 
   
-

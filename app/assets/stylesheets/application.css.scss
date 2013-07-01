@@ -11,8 +11,8 @@
 
  *= require_self
 */
+@import url(https://fonts.googleapis.com/css?family=Lato:100,200,300,400,700);
 @import 'colors';
-
 @import 'compass';
 @import "bootstrap_and_overrides";
 
@@ -26,6 +26,29 @@ body { padding-top: 80px; }
 body {
   // background: url(/assets/cork.png) top left;
   background: $lightGray;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
+
+h1{
+  font-weight: 200;
+  font-size: 60px;
+}
+
+h2{
+  margin-top: 50px;
+  font-weight: 200;
+  font-size: 40px;
+}
+
+h3{
+  margin-top: 50px;
+  font-weight: 200;
+  font-size: 30px;
+}
+
+.red-border{
+  border: red solid 1px;
 }
 
 .score{
@@ -78,7 +101,7 @@ i.icon-twitter{
   text-align: center;
 
   p {
-    font-size: 10px;
+    font-size: 12px;
     color: darken($lightYellow, 90%);
 
     img {

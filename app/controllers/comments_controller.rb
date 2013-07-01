@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
       params[:comment].merge(
         from_user_name: current_user.twitter_handle,
         twitter_handle: current_user.twitter_handle,
+        twitter_profile_image_url: current_user.twitter_profile_image_url,
         tweeted_at: Time.now))
     @comment.save!
 

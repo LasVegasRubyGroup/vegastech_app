@@ -3,7 +3,7 @@ class Comment < Post
 
   # after_create :queue_reply_checker
 
-  attr_accessible :post_to_twitter
+  attr_accessible :post_to_twitter, :twitter_profile_image_url
   attr_accessor :post_to_twitter
 
   private

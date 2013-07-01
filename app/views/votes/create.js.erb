@@ -1,6 +1,6 @@
 <% if @error %>
   <%# TODO %>
 <% else %>
-  $('.story[data-id="<%= @post.id %>"] .vote').replaceWith('<div class="vote"><i class="icon-ok icon-white"></i></div>')
+  $('.story[data-id="<%= @post.id %>"] .vote').replaceWith('<div class="voted"><i class="icon-circle-arrow-up"></i></div>')
   $('.story[data-id="<%= @post.id %>"] .rank').text('<%= @post.votes_count %> points')
 <% end %>

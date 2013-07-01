@@ -3,11 +3,14 @@
   .form-inputs
     = f.association :tags, collection: Tag.order('name DESC'), :as => :check_boxes
     = f.input :start_time, :wrapper => :prepend, label: false do
+
       = content_tag :div, "Start Time", class: "input-append date", id: 'datetimepicker' do
-        = f.input_field :start_time, as: :string, 'data-format' => "dd/MM/yyyy hh:mm:ss"
+        
         = content_tag :span, "Start Time", class: "add-on" do
           i data-time-icon="icon-time" data-date-icon="icon-calendar"
 
+
+        = f.input_field :start_time, as: :string, 'data-format' => "dd/MM/yyyy hh:mm:ss"
 
   .form-actions
     = f.submit "Update", class: 'btn'

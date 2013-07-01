@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :twitter_handle, :uid, :auth_credentials
+  attr_accessible :twitter_handle, :uid, :auth_credentials, :twitter_profile_image_url
 
   def index
   end

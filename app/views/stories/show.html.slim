@@ -1,0 +1,34 @@
+= render(partial: 'stories/story', locals: {story:@story}) 
+
+- if @comments.count > 0 
+  h1 Discussion
+  .comments
+    - @comments.each do |comment| 
+      = render(partial: 'comments/comment', locals: {story: comment}) 
+
+- if @comments.empty? && current_user 
+  h3 There are no comments for this story.
+  | Start the discussion by submitting a comment below.
+- elsif !@comments.empty? && current_user 
+  h3 Continue the discussion by adding your thoughts.
+- elsif @comments.empty? && !current_user 
+  h3 There are no comments for this story.
+  p Sign in to continue the discussion.
+- elsif !@comments.empty? && !current_user 
+  h3 Sign in to continue the discussion.
+
+- if current_user 
+  = simple_form_for([@story, @story.comments.build(post_to_twitter:true)]) do |f| 
+    .row.comment-form
+      .span1
+        = image_tag(current_user.twitter_profile_image_url) 
+
+      .span8
+        .control-group
+          .controls
+            = f.input :content, input_html: { class: 'span9', rows: '13' } 
+            = f.input :post_to_twitter, label: false, as: :boolean, inline_label: "Yes, reply to #{@story.twitter_handle}  on Twitter, too."
+
+
+        = f.submit('Post Your Comment', class: 'btn btn-large btn-primary') 
+ 
