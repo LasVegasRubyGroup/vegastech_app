@@ -118,11 +118,13 @@ i.icon-twitter{
 }
 
 .footer {
+  padding-top: 50px;
+  border-top: dashed $lightYellow 5px;
   margin: 30px 0 50px;
   text-align: center;
 
   p {
-    font-size: 12px;
+    font-size: 14px;
     color: darken($lightYellow, 90%);
 
     img {
