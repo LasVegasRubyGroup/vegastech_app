@@ -1,16 +1,58 @@
 h1 About 
 
-h3 Why We Did It
+h3 Why This Was Built
 
-p The #VegasTech Bulletin Board was created during Hack Nights at the Las Vegas Ruby User Group. We built this app as a learning process for members and also thought it would help get the word out about important community events.
+p We want to make it easier to follow #VegasTech events and announcements. We also want to find a place where people can discuss things related to #VegasTech which are important to them.
+
+h3 When This Was Built
+
+p This app was built during Hack Nights at the Las Vegas Ruby User Group. We did it as a learning process for members. While the project was initially developed during Hack Nights, it's no maintained by the 'Maintaners' listed below.
 
 h3 How Does It Work?
 
-h4 We try to show what's relevant
+p We use the Twitter API to display tweets which include the #VegasTech hashtag. If it's retweeted, it will increase the point count. Users can also sign in and vote for a tweet without retweeting it.
 
-p We use the Twitter API to display tweets with the #VegasTech hashtag. If it's retweeted, it will increase the point count. Users can also sign in and vote for a tweet.
+h3 Current Contributors
 
-h4 Curators
+p 
+  | While any tweet container #VegasTech is posted on the Bulletin Board, they still need to be tagged as events and other tags. If you'd like to become a curator just send us a note 
+  = mail_to('vbtt@lvrug.org', nil, subject: 'I want to be a curator for the #VegasTech Bulletin Board')
+  | .
 
-p Tweets are tagged by a team of curators. 
+ul.thumbnails
+  li.span4
+    center
+      h4 Judd Lillestrand
+        
+      =image_tag('judd.jpg', size: '250x250')
 
+      p Curator, Maintainer
+      p= link_to('@juddlillestrand', 'http://twitter.com/juddlillestrand', target: :new)
+
+  li.span4
+
+    center
+      h4 Russ Smith
+
+      =image_tag('russ.jpg', size: '250x250')
+
+      p Curator, Maintainer
+      p= link_to('@cloudsplitter', 'http://twitter.com/cloudsplitter', target: :new)
+
+
+  li.span4
+
+    center
+      h4 Dylan Simpson
+
+      =image_tag('dylan_simpson.png', size: '250x250')
+      
+      p Curator
+      p= link_to('@dylansimpson', 'http://twitter.com/dylansimpson', target: :new)
+
+h3 Feedback
+
+p 
+  | Have thoughts for feedback on the Bulletin Board? Feel free to email us: 
+  = mail_to('vbtt@lvrug.org', nil, subject: 'I want to be a curator for the #VegasTech Bulletin Board')
+  | .
