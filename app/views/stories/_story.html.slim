@@ -10,7 +10,7 @@
           = auto_link(story.content, url_target: '_blank').html_safe 
         .metadata
 
-          a href="= link_from_handle(story.twitter_handle) " target="_blank"
+          a href="#{ link_from_handle(story.twitter_handle)}" target="_blank"
             = image_tag(story.twitter_profile_image_url)
           
           span.handle= link_to(story.twitter_handle, link_from_handle(story.twitter_handle), target: '_blank')
