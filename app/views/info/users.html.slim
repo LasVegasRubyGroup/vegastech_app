@@ -1,0 +1,15 @@
+h2 #VegasTech Supporters
+
+h4 This is a list of the people who have signed into the Bulletin Board with with Twitter.
+
+#supporters
+
+  ul.thumbnails
+
+    - @users.each do |user| 
+      .span2.head_shot
+        .thumbnail
+
+          = image_tag(user.twitter_profile_image_url) 
+          p= link_to(user.twitter_handle ,link_from_handle(user.twitter_handle), target: :new) 
+   
