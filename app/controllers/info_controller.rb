@@ -4,7 +4,7 @@ class InfoController < ApplicationController
   end
 
   def users
-    @users = User.all
+    @users = User.order('created_at DESC')
   end
 
   def best_of_week
