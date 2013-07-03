@@ -26,6 +26,7 @@ gem 'simple_form'
 gem 'bootstrap-datetimepicker-rails'
 gem "less-rails"
 gem 'therubyracer'
+gem "friendly_id"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

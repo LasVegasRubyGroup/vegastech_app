@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701035258) do
+ActiveRecord::Schema.define(:version => 20130703160614) do
 
   create_table "flags", :force => true do |t|
     t.string   "twitter_handle", :null => false
@@ -53,7 +53,10 @@ ActiveRecord::Schema.define(:version => 20130701035258) do
     t.integer  "tagging_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "slug"
   end
+
+  add_index "tags", ["slug"], :name => "index_tags_on_slug"
 
   create_table "users", :force => true do |t|
     t.string   "twitter_handle"
