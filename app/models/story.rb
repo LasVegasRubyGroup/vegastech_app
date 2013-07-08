@@ -15,15 +15,25 @@ class Story < Post
     where('start_time > ?', Time.zone.now )
   end
 
+  def self.find_or_create_by_meetup_id(json_event)
+    if story = self.find_by_twitter_id("meetup_#{json_event['id']}")
+      story
+    else
+      self.create_from_meetup(json_event)
+    end
+  end
+
+
   def self.create_from_meetup(json_event)
     start_time_milliseconds = json_event['time'].to_i
-    story = self.create!(
+    story = self.find_or_create_by_twitter_id(
       twitter_id: "meetup_#{json_event['id']}",
       twitter_handle: '@VegasTech_News',
       content: MeetupFetcher.meetup_story_content(json_event),
       tweeted_at: Time.current,
       from_user_name: 'Meetup API',
       start_time: Time.at(start_time_milliseconds / 1000),
+      twitter_profile_image_url: 'https://si0.twimg.com/profile_images/3117763267/78f3399ac23aa91c2697a4887380191b_normal.png'
       )
 
     Tagging.create(story_id: story.id, tag_id: 1)

@@ -6,7 +6,7 @@ class MeetupFetcher
     meetup_data = JSON.parse(open("https://api.meetup.com/2/open_events.json?text=#{ENV['TRACK_HASHTAG']}&key=1d4347a6e20ed253895c2a265161").read)
 
     meetup_data['results'].each do |event|
-      Story.create_from_meetup(event)
+      Story.find_or_create_by_meetup_id(event)
     end
   end
 
