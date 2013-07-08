@@ -13,7 +13,21 @@ class Story < Post
   def self.events_in_the_furture
     # where('start_time IS NOT NULL AND start_time > ?', Time.zone.now )
     where('start_time > ?', Time.zone.now )
+  end
 
+  def self.create_from_meetup(json_event)
+    start_time_milliseconds = json_event['time'].to_i
+    story = self.create!(
+      twitter_id: "meetup_#{json_event['id']}",
+      twitter_handle: '@VegasTech_News',
+      content: MeetupFetcher.meetup_story_content(json_event),
+      tweeted_at: Time.current,
+      from_user_name: 'Meetup API',
+      start_time: Time.at(start_time_milliseconds / 1000),
+      )
+
+    Tagging.create(story_id: story.id, tag_id: 1)
+    
   end
 
   def self.create_from_tweet(tweet)
