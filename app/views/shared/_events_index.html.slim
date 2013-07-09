@@ -8,8 +8,11 @@ h2 Upcoming Events
       |  
       = l date, format: :day_of_week
 
+
     .event
       - events_for_day.each do |event|
 
         = render partial: 'stories/story', :locals => { :story => event } 
-        = "Starts at: #{l event.start_time, format: :just_time}"
+        h4
+          i.icon-time
+          = "#{l event.start_time, format: :just_time} Start"
