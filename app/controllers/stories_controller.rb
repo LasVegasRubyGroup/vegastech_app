@@ -24,6 +24,14 @@ class StoriesController < ApplicationController
     end
   end
 
+
+  def destroy
+    @story = Story.find(params[:id])
+    
+    @story.destroy
+    redirect_to root_url 
+  end
+
 private
 
   def ensure_admin
