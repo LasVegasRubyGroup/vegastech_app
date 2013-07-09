@@ -8,6 +8,11 @@ h2 Upcoming Events
       |  
       = l date, format: :day_of_week
 
+    - if events_for_day.size > 1
+
+      .alert.alert-danger
+        i.icon-heart
+        |  Hooray! More than one #VegasTech event on #{l date, format: :day_of_week}
 
     .event
       - events_for_day.each do |event|
