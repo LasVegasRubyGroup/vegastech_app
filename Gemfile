@@ -27,6 +27,7 @@ gem 'bootstrap-datetimepicker-rails'
 gem "less-rails"
 gem 'therubyracer'
 gem "friendly_id"
+gem 'meta-tags', :require => 'meta_tags'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

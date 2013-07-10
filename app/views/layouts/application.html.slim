@@ -2,7 +2,7 @@ doctype html
 html
   head
     meta name="viewport" content="width=device-width, initial-scale=1.0"
-    title= content_for?(:title) ? yield(:title) : "#VegasTech Bulletin Board" 
+    = display_meta_tags :site => "#VegasTech Bulletin Board", :reverse => true
     meta name="author" content="#VegasTech Bulletin Board"
     = stylesheet_link_tag "application", :media => "all"
  
