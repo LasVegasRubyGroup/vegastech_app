@@ -12,7 +12,7 @@ class Story < Post
 
   def self.events_in_the_furture
     # where('start_time IS NOT NULL AND start_time > ?', Time.zone.now )
-    where('start_time > ?', Time.zone.now )
+    where('start_time > ?', Time.zone.now + 45.minutes )
   end
 
   def self.find_or_create_by_meetup_id(json_event)
