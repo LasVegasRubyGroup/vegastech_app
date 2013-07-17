@@ -53,7 +53,7 @@ class Story < Post
 
   def self.create_from_ticket_cake(xml_event)
     start_time = Time.zone.parse(/content="(.*)"/.match(xml_event['pubDate'])[1]) + 1.hour
-    return unless xml_event['description'].include?('#VegasTech')
+    # return unless xml_event['description'].include?('#VegasTech')
     story = self.find_or_create_by_twitter_id(
       twitter_id: "ticket_cake_#{xml_event['guid']}",
       twitter_handle: '@VegasTech_News',
