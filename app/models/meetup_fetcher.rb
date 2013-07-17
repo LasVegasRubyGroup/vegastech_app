@@ -11,7 +11,7 @@ class MeetupFetcher
   end
 
   def self.meetup_story_content(event_data)
-    "#VegasTech Event: #{event_data['name']} - RSVP and details:  #{event_data['event_url']} (via Meetup API)"
+    "#{event_data['name']} - RSVP and details:  #{event_data['event_url']} (via Meetup API)"
   end
 
 end

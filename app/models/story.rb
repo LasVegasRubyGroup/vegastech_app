@@ -10,6 +10,10 @@ class Story < Post
 
   attr_accessible :twitter_id, :twitter_profile_image_url, :tag_ids, :start_time
 
+  def from_api?
+    twitter_id.include?('meetup') || twitter_id.include?('ticket_cake')
+  end
+
   def self.events_in_the_furture
     # where('start_time IS NOT NULL AND start_time > ?', Time.zone.now )
     where('start_time > ?', Time.zone.now - 45.minutes )
@@ -23,6 +27,13 @@ class Story < Post
     end
   end
 
+  def self.find_or_create_by_ticket_cake_id(xml_event)
+    if story = self.find_by_twitter_id("ticket_cake_#{xml_event['guid'].to_i}")
+      story
+    else
+      self.create_from_ticket_cake(xml_event)
+    end
+  end
 
   def self.create_from_meetup(json_event)
     start_time_milliseconds = json_event['time'].to_i
@@ -33,12 +44,30 @@ class Story < Post
       tweeted_at: Time.current,
       from_user_name: 'Meetup API',
       start_time: Time.at(start_time_milliseconds / 1000),
-      twitter_profile_image_url: 'https://si0.twimg.com/profile_images/3117763267/78f3399ac23aa91c2697a4887380191b_normal.png'
+      twitter_profile_image_url: 'http://vegastech.lvrug.org/assets/meetupapi_normal.png'
       )
 
     Tagging.create(story_id: story.id, tag_id: 1)
     
   end
+
+  def self.create_from_ticket_cake(xml_event)
+    start_time = Time.zone.parse(/content="(.*)"/.match(xml_event['pubDate'])[1]) + 1.hour
+    return unless xml_event['description'].include?('#VegasTech')
+    story = self.find_or_create_by_twitter_id(
+      twitter_id: "ticket_cake_#{xml_event['guid']}",
+      twitter_handle: '@VegasTech_News',
+      content: TicketCakeFetcher.story_content(xml_event),
+      tweeted_at: Time.current,
+      from_user_name: 'Ticket Cake API',
+      start_time: start_time,
+      twitter_profile_image_url: 'http://vegastech.lvrug.org/assets/ticket_cake_thumb_normall.jpg'
+      )
+
+    Tagging.create(story_id: story.id, tag_id: 1)
+    
+  end
+
 
   def self.create_from_tweet(tweet)
     story = self.create(
