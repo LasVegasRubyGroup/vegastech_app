@@ -1,7 +1,7 @@
 =simple_form_for(@story, :html => { :class => 'form-horizontal' }) do |f|
 
   .form-inputs
-    = f.association :tags, collection: Tag.order('name DESC'), :as => :check_boxes
+    = f.association :tags, collection: Tag.order('name ASC'), :as => :check_boxes
     = f.input :start_time, :wrapper => :prepend, label: false do
 
       = content_tag :div, "Start Time", class: "input-append date", id: 'datetimepicker' do
