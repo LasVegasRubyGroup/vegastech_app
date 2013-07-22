@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   before_filter :ensure_admin, only: [:index]
 
   def index
-    @tags = Tag.all
+    @tags = Tag.order('name ASC')
   end
 
   def show
