@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :current_user_is_admin?
 
   private
 
@@ -11,5 +11,10 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     @current_user
+  end
+
+  def current_user_is_admin?
+    return false if current_user.nil? || !current_user.admin?
+    true
   end
 end

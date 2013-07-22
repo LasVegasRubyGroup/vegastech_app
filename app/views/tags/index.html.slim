@@ -1,0 +1,12 @@
+h1 Tags Overview
+
+table.table.table-striped
+  thead
+    tr
+      td Name
+      td Number of Tweets
+  tbody
+    - @tags.each do |tag|
+      tr
+        td= tag.name
+        td= tag.stories.count
