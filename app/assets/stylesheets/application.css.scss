@@ -14,14 +14,15 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:100,200,300,400,700);
 @import 'colors';
 @import 'compass';
-@import "bootstrap_and_overrides";
+@import 'bootstrap_and_overrides';
 
-@import "bootstrap";
+@import 'bootstrap';
 body { padding-top: 80px; }
-@import "bootstrap-responsive";
+@import 'bootstrap-responsive';
 @import 'font-awesome';
 @import 'stories';
 @import 'bootstrap-datetimepicker';
+@import 'datepicker';
 
 body {
   // background: url(/assets/cork.png) top left;
@@ -66,7 +67,6 @@ h4{
   font-weight: 200;
   font-size: 20px;
 }
-
 
 .red-border{
   border: red solid 1px;

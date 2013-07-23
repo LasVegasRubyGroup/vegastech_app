@@ -12,8 +12,10 @@
 #
 # = require jquery
 # = require jquery_ujs
+# = require bootstrap-datepicker
 # = require bootstrap-datetimepicker
 # = require bootstrap
+# = require date_range_picker.js
 
 $('#datetimepicker').datetimepicker({
     language: 'en',

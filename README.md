@@ -1,5 +1,7 @@
 TEsting
 
+First #VegasTech Tweet: https://twitter.com/dylanbathurst/status/57838033944322048
+
 # Vegas Tech App
 
 Las Vegas Ruby User Group Application for #VegasTech.

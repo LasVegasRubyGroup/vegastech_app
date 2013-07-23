@@ -1,4 +1,15 @@
 h1 Jackie's Tags Report
+
+.span4.offset8
+  table
+    tr
+      td
+        | Start Date:
+        input type='text' value="#{@start_date}" id='dpd1' class='span2'
+      td
+        | End Date:
+        input type='text' value="#{@end_date}" id='dpd2' class='span2'
+
 table.table.table-striped
   thead
     tr
@@ -8,4 +19,4 @@ table.table.table-striped
     - @tags.each do |tag|
       tr
         td= tag.name
-        td= tag.stories.count
+        td= tag.stories.where(:tweeted_at => @start_date..@end_date).count
