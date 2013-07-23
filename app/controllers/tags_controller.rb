@@ -7,6 +7,7 @@ class TagsController < ApplicationController
     # @stories = Story.where(:tweeted_at => @start_date..@end_date)
     # @story_tags = Story.where(:tweeted_at => @start_date..@end_date)
     @tags = Tag.all
+    @stories_within_range = Story.where(:tweeted_at => @start_date..@end_date)
   end
 
   def show

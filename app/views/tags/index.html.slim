@@ -20,3 +20,6 @@ table.table.table-striped
       tr
         td= tag.name
         td= tag.stories.where(:tweeted_at => @start_date..@end_date).count
+    tr
+      td Total Number Of Unique Tweets
+      td= @stories_within_range.count
