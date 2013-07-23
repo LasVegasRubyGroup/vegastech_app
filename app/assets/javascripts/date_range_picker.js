@@ -17,5 +17,5 @@ var checkout = $('#dpd2').datepicker({
   }
 }).on('changeDate', function(ev) {
   checkout.hide(); 
-  window.location= "?start_date=" + $('#dpd1').val() + '&' + "end_date=" + ev.date.getFullYear() + '-' + (ev.date.getMonth() + 1) + '-' + ev.date.getDate()
+  window.location= "?start_date=" + $('#dpd1').val() + '&' + "end_date=" + ev.date.getFullYear() + '-' + (ev.date.getMonth() + 1) + '-' + ev.date.getDate();
 }).data('datepicker');
