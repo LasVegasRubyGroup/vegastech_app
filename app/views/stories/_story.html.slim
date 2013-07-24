@@ -51,7 +51,6 @@
               = link_to("<i class='icon-circle-arrow-up'></i>".html_safe, '/auth/twitter', class: 'vote') 
 
 
-
       .hidden-phone
         .span3.vote_actions
           center
@@ -67,6 +66,9 @@
           / .score #{story.score.to_f}
 
       br.clear
+      .tag-icons
+        - story.tags.each do |tag|
+          = link_to("<i class='#{tag.icon_label}'></i>".html_safe, tag, title: tag.name)
 
 .modal.hide id="#{'retweet-modal-' + story.twitter_id}"
   .modal-header

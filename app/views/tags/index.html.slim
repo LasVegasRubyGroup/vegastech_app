@@ -18,7 +18,7 @@ table.table.table-striped
   tbody
     - @tags.each do |tag|
       tr
-        td= tag.name
+        td= "<i class='#{tag.icon_label}'></i> #{tag.name}".html_safe
         td= tag.stories.where(:tweeted_at => @start_date..@end_date).count
     tr
       td Total Number Of Unique Tweets

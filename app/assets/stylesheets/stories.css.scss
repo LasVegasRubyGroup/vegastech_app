@@ -74,6 +74,21 @@
       }
     }
 
+    .tag-icons a{
+      padding-left: 5px;
+      color: $darkGray;
+      @include transition-property(background-color color);
+      @include transition-duration(750ms);
+
+      &:hover {
+        @include transition-property(background-color color);
+        @include transition-duration(750ms);
+        text-decoration: none;
+        color: green;
+      }
+
+    }
+
     .voted {
       padding: 15px;
       width: 30px;

@@ -18,6 +18,12 @@ class TagsController < ApplicationController
     if request.path != tag_path(@tag)
       redirect_to tag_path(@tag), status: :moved_permanently
     end
+
+    #ensue they always go to the events index
+    if @tag.id == 1
+      redirect_to events_path, status: :moved_permanently
+    end
+
   end
 
   def default_start_date(string)
