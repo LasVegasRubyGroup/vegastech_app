@@ -8,6 +8,10 @@
       .span9
         .tweet-words
           = auto_link(story.content, url_target: '_blank').html_safe 
+        
+        .tag-icons.pull-right
+          - story.tags.each do |tag|
+            = link_to("<i class='#{tag.icon_label}'></i>".html_safe, tag, title: tag.name)
         .metadata
           - if story.from_api?
             a href="#{ link_from_api_source(story.twitter_id)}" target="_blank"
@@ -65,10 +69,7 @@
 
           / .score #{story.score.to_f}
 
-      br.clear
-      .tag-icons
-        - story.tags.each do |tag|
-          = link_to("<i class='#{tag.icon_label}'></i>".html_safe, tag, title: tag.name)
+
 
 .modal.hide id="#{'retweet-modal-' + story.twitter_id}"
   .modal-header

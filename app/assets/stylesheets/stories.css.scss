@@ -74,19 +74,22 @@
       }
     }
 
-    .tag-icons a{
-      padding-left: 5px;
-      color: $darkGray;
-      @include transition-property(background-color color);
-      @include transition-duration(750ms);
-
-      &:hover {
+    .tag-icons{
+      padding-right: 10px;
+      
+      a{
+        padding-left: 5px;
+        color: $darkGray;
         @include transition-property(background-color color);
         @include transition-duration(750ms);
-        text-decoration: none;
-        color: green;
-      }
 
+        &:hover {
+          @include transition-property(background-color color);
+          @include transition-duration(750ms);
+          text-decoration: none;
+          color: green;
+        }
+      }
     }
 
     .voted {
