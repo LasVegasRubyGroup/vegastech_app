@@ -1,4 +1,3 @@
-h1 = @tag.name
-
+h1 ="<i class='#{@tag.icon_label}'></i> #{@tag.name}".html_safe
 =render 'shared/story_index'
 
