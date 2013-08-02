@@ -27,7 +27,7 @@ class TagsController < ApplicationController
   end
 
   def default_start_date(string)
-    return Date.current - 1.year if string.nil? 
+    return Date.current - 1.month if string.nil? 
     Date.parse(string)
   end
 
