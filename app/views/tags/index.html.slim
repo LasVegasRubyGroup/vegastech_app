@@ -10,6 +10,8 @@ h1 Jackie's Tags Report
         | End Date:
         input type='text' value="#{@end_date}" id='dpd2' class='span2'
 
+p= "Oldest tweet we have record of was tweeted on #{l Story.first.tweeted_at, formart: :short}"
+
 table.table.table-striped
   thead
     tr
