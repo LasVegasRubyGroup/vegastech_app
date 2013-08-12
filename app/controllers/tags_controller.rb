@@ -8,6 +8,7 @@ class TagsController < ApplicationController
     # @story_tags = Story.where(:tweeted_at => @start_date..@end_date)
     @tags = Tag.all
     @stories_within_range = Story.where(:tweeted_at => @start_date..@end_date)
+    @unique_handles = @stories_within_range.group_by { |h| h.twitter_handle }
   end
 
   def show

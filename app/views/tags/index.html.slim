@@ -23,5 +23,11 @@ table.table.table-striped
         td= "<i class='#{tag.icon_label}'></i> #{tag.name}".html_safe
         td= tag.stories.where(:tweeted_at => @start_date..@end_date).count
     tr
-      td Total Number Of Unique Tweets
+      td Total Number Of Tweets In Period
       td= @stories_within_range.count
+    tr
+      td Total Unique Twitter Handles In Period
+      td= @unique_handles.count
+
+
+      
