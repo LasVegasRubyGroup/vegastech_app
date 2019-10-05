@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.17'
 gem 'rake', '10.0.3'
 gem 'omniauth-twitter'
 gem 'twitter'
