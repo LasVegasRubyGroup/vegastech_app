@@ -302,7 +302,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    will_paginate (3.0.4)
+    will_paginate (3.0.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
