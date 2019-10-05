@@ -97,7 +97,7 @@ GEM
       railties (>= 3.0.0)
     faraday (0.8.7)
       multipart-post (~> 1.1)
-    ffi (1.9.0)
+    ffi (1.10.0)
     font-awesome-rails (3.2.1.1)
       railties (>= 3.2, < 5.0)
     foreman (0.63.0)
